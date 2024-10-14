@@ -16,6 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Items", "_Items", "{AB0166
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.CouponInfrastructure", "Sekmen.Commerce.Services.CouponInfrastructure\Sekmen.Commerce.Services.CouponInfrastructure.csproj", "{8A71435A-4100-4801-AD44-0ED0C4822ECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.CouponDomain", "Sekmen.Commerce.Services.CouponDomain\Sekmen.Commerce.Services.CouponDomain.csproj", "{8E21FD74-4015-47B7-A3BE-29D3F7B89702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.CouponApplication", "Sekmen.Commerce.Services.CouponApplication\Sekmen.Commerce.Services.CouponApplication.csproj", "{17A6165A-9E33-47BF-AD66-0FC0700E23F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +32,23 @@ Global
 		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A71435A-4100-4801-AD44-0ED0C4822ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A71435A-4100-4801-AD44-0ED0C4822ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A71435A-4100-4801-AD44-0ED0C4822ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A71435A-4100-4801-AD44-0ED0C4822ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E21FD74-4015-47B7-A3BE-29D3F7B89702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E21FD74-4015-47B7-A3BE-29D3F7B89702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E21FD74-4015-47B7-A3BE-29D3F7B89702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E21FD74-4015-47B7-A3BE-29D3F7B89702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17A6165A-9E33-47BF-AD66-0FC0700E23F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A6165A-9E33-47BF-AD66-0FC0700E23F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A6165A-9E33-47BF-AD66-0FC0700E23F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A6165A-9E33-47BF-AD66-0FC0700E23F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
+		{8A71435A-4100-4801-AD44-0ED0C4822ECF} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
+		{8E21FD74-4015-47B7-A3BE-29D3F7B89702} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
+		{17A6165A-9E33-47BF-AD66-0FC0700E23F9} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
 	EndGlobalSection
 EndGlobal
