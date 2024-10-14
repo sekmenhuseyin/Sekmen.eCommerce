@@ -1,9 +1,10 @@
 namespace Sekmen.Commerce.Web.Controllers;
 
-public class HomeController(ILogger<HomeController> logger) : Controller
+public class HomeController(ILogger<HomeController> logger, ICouponService couponService) : Controller
 {
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var result = await couponService.GetAllAsync();
         return View();
     }
 

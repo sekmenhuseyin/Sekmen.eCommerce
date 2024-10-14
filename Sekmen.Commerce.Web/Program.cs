@@ -3,9 +3,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 _ = builder.Services
     .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
+    .AddHttpContextAccessor()
+    .AddHttpClient()
     .AddScoped<IBaseService, BaseService>()
     .AddScoped<ICouponService, CouponService>()
-    .AddHttpClient()
     .AddHttpClient<ICouponService, CouponService>();
 _ = builder.Services
     .AddControllersWithViews();
