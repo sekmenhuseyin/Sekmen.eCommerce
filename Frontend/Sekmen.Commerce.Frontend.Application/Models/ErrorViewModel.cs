@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.WebApplication.Models;
+namespace Sekmen.Commerce.Frontend.Application.Models;
 
 public class ErrorViewModel
 {

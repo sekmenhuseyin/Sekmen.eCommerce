@@ -1,4 +1,6 @@
-namespace Sekmen.Commerce.WebApplication.Services;
+using Sekmen.Commerce.Frontend.Application.Models;
+
+namespace Sekmen.Commerce.Frontend.Application.Services;
 
 public interface ICouponService
 {
