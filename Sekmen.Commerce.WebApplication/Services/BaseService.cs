@@ -9,7 +9,7 @@ public class BaseService(
     HttpClient httpClient
 ) : IBaseService
 {
-    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
+    protected readonly JsonSerializerOptions SerializerOptions = new()
     {
         PropertyNameCaseInsensitive = true
     };
@@ -39,7 +39,7 @@ public class BaseService(
                 return new ResponseDto().Error("InternalServerError");
             default:
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<ResponseDto>(apiContent, _jsonSerializerOptions);
+                return JsonSerializer.Deserialize<ResponseDto>(apiContent, SerializerOptions);
         }
     }
 }

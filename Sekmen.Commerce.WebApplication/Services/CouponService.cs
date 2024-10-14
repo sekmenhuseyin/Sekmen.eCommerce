@@ -2,9 +2,9 @@ namespace Sekmen.Commerce.WebApplication.Services;
 
 public interface ICouponService
 {
-    Task<ResponseDto?> GetAllAsync();
-    Task<ResponseDto?> GetAsync(string code);
-    Task<ResponseDto?> GetAsync(int id);
+    Task<List<CouponDto>> GetAllAsync();
+    Task<CouponDto?> GetAsync(string code);
+    Task<CouponDto?> GetAsync(int id);
     Task<ResponseDto?> CreateAsync(CouponDto couponDto);
     Task<ResponseDto?> UpdateAsync(CouponDto couponDto);
     Task<ResponseDto?> DeleteAsync(int id);
@@ -16,19 +16,32 @@ public class CouponService(
 ) : BaseService(httpClient), ICouponService
 {
     private readonly string _baseUrl = appSettings.Services.CouponApi.Url + "api/coupon/";
-    public async Task<ResponseDto?> GetAllAsync()
+
+    public async Task<List<CouponDto>> GetAllAsync()
     {
-        return await SendAsync(new RequestDto(_baseUrl));
+        var response = await SendAsync(new RequestDto(_baseUrl));
+
+        return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
+            ? JsonSerializer.Deserialize<List<CouponDto>>(response.Result.ToString()!, SerializerOptions)!
+            : [];
     }
 
-    public async Task<ResponseDto?> GetAsync(string code)
+    public async Task<CouponDto?> GetAsync(string code)
     {
-        return await SendAsync(new RequestDto(_baseUrl + code));
+        var response = await SendAsync(new RequestDto(_baseUrl + code));
+
+        return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
+            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!)
+            : null;
     }
 
-    public async Task<ResponseDto?> GetAsync(int id)
+    public async Task<CouponDto?> GetAsync(int id)
     {
-        return await SendAsync(new RequestDto(_baseUrl + id));
+        var response = await SendAsync(new RequestDto(_baseUrl + id));
+
+        return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
+            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!)
+            : null;
     }
 
     public async Task<ResponseDto?> CreateAsync(CouponDto couponDto)

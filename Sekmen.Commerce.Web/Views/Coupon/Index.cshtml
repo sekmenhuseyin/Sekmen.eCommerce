@@ -1,0 +1,32 @@
+@model List<CouponDto>
+@{
+    ViewData["Title"] = "Coupons";
+}
+<h1>Coupons List</h1>
+<a class="btn btn-outline-primary">Add New</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Discount</th>
+        <th>Min Amount</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var dto in Model)
+    {
+        <tr>
+            <td>@dto.Id</td>
+            <td>@dto.Code</td>
+            <td>@dto.DiscountAmount</td>
+            <td>@dto.MinAmount</td>
+            <td>
+                <a class="btn btn-secondary">Edit</a>
+                <a class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

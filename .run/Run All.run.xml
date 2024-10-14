@@ -7,7 +7,6 @@
             <option name="type" value="immediately" />
           </ConditionSnapshot>
         </option>
-        <option name="disableDebugging" value="true" />
         <option name="executable">
           <ExecutableSnapshot>
             <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.CouponApi IIS Express" />
@@ -20,7 +19,6 @@
             <option name="type" value="immediately" />
           </ConditionSnapshot>
         </option>
-        <option name="disableDebugging" value="true" />
         <option name="executable">
           <ExecutableSnapshot>
             <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.Web: IIS Express" />
