@@ -1,7 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+_ = builder.Services
+    .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
+    .AddScoped<IBaseService, BaseService>()
+    .AddScoped<ICouponService, CouponService>()
+    .AddHttpClient()
+    .AddHttpClient<ICouponService, CouponService>();
+_ = builder.Services
+    .AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -12,12 +19,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
+app
+    .UseHttpsRedirection()
+    .UseStaticFiles()
+    .UseRouting()
+    .UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
