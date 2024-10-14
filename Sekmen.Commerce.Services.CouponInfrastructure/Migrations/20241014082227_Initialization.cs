@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Sekmen.Commerce.Services.CouponApi.Infrastructure.Migrations
+namespace Sekmen.Commerce.Services.CouponInfrastructure
 {
     /// <inheritdoc />
     public partial class Initialization : Migration

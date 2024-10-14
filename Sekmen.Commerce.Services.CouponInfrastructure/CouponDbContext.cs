@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApi.Infrastructure;
+namespace Sekmen.Commerce.Services.CouponInfrastructure;
 
 public class CouponDbContext(
     DbContextOptions options

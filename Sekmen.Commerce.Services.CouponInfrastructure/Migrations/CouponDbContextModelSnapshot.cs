@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sekmen.Commerce.Services.CouponApi.Infrastructure;
+using Sekmen.Commerce.Services.CouponInfrastructure;
 
 #nullable disable
 
-namespace Sekmen.Commerce.Services.CouponApi.Infrastructure.Migrations
+namespace Sekmen.Commerce.Services.CouponInfrastructure
 {
     [DbContext(typeof(CouponDbContext))]
-    [Migration("20241014082227_Initialization")]
-    partial class Initialization
+    partial class CouponDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
