@@ -1,5 +1,3 @@
-using Sekmen.Commerce.Services.CouponApi.Models;
-
 namespace Sekmen.Commerce.Services.CouponApi.Controllers;
 
 [Route("api/[controller]")]

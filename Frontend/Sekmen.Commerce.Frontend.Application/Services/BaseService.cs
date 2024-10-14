@@ -1,15 +1,8 @@
-using Sekmen.Commerce.Frontend.Application.Models;
-
 namespace Sekmen.Commerce.Frontend.Application.Services;
-
-public interface IBaseService
-{
-    Task<ResponseDto?> SendAsync(RequestDto requestDto);
-}
 
 public class BaseService(
     HttpClient httpClient
-) : IBaseService
+)
 {
     protected readonly JsonSerializerOptions SerializerOptions = new()
     {

@@ -5,7 +5,7 @@ _ = builder.Services
     .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
     .AddHttpContextAccessor()
     .AddHttpClient()
-    .AddScoped<IBaseService, BaseService>()
+    .AddScoped<BaseService>()
     .AddScoped<ICouponService, CouponService>()
     .AddHttpClient<ICouponService, CouponService>();
 _ = builder.Services
