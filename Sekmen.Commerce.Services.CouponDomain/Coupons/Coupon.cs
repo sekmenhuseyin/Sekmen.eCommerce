@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApi.Domain;
+namespace Sekmen.Commerce.Services.CouponDomain.Coupons;
 
 public class Coupon
 {
