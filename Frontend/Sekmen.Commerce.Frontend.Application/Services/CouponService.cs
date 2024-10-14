@@ -33,7 +33,7 @@ public class CouponService(
         var response = await SendAsync(new RequestDto(_baseUrl + code));
 
         return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
-            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!)
+            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!, SerializerOptions)
             : null;
     }
 
@@ -42,7 +42,7 @@ public class CouponService(
         var response = await SendAsync(new RequestDto(_baseUrl + id));
 
         return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
-            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!)
+            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!, SerializerOptions)
             : null;
     }
 

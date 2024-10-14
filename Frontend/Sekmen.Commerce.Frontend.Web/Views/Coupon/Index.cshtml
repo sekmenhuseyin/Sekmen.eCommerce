@@ -3,7 +3,7 @@
     ViewData["Title"] = "Coupons";
 }
 <h1>Coupons List</h1>
-<a class="btn btn-outline-primary">Add New</a>
+<a asp-action="Create" class="btn btn-outline-primary">Add New</a>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -20,8 +20,8 @@
         <tr>
             <td>@dto.Id</td>
             <td>@dto.Code</td>
-            <td>@dto.DiscountAmount</td>
-            <td>@dto.MinAmount</td>
+            <td>@dto.DiscountAmount.ToString("c")</td>
+            <td>@dto.MinAmount.ToString("c")</td>
             <td>
                 <a class="btn btn-secondary">Edit</a>
                 <a class="btn btn-danger">Delete</a>

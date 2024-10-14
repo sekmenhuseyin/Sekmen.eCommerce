@@ -38,8 +38,8 @@ public class CouponController(
     {
         var result = await mediatr.Send(new CreateCouponCommand(couponDto));
         return Ok(result
-            ? new ResponseDto().Error("error")
-            : new ResponseDto().Success(couponDto));
+            ? new ResponseDto().Success(couponDto)
+            : new ResponseDto().Error("error"));
     }
 
     [HttpPut]
@@ -47,8 +47,8 @@ public class CouponController(
     {
         var result = await mediatr.Send(new UpdateCouponCommand(couponDto));
         return Ok(result
-            ? new ResponseDto().Error("error")
-            : new ResponseDto().Success(couponDto));
+            ? new ResponseDto().Success(couponDto)
+            : new ResponseDto().Error("error"));
     }
 
     [HttpDelete("{id:int}")]
@@ -56,7 +56,7 @@ public class CouponController(
     {
         var result = await mediatr.Send(new DeleteCouponCommand(id));
         return Ok(result
-            ? new ResponseDto().Error("error")
-            : new ResponseDto().Success(true));
+            ? new ResponseDto().Success(true)
+            : new ResponseDto().Error("error"));
     }
 }
