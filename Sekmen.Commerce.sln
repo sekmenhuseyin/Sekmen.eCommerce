@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{25AEB133-F15D-4AE6-A206-A521C9D867F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{47E564B1-ABBB-43CA-962E-B8EC2F71775F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{0E653161-D943-4AB7-8374-FDEEFC2C0A14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.CouponApi", "Sekmen.Commerce.Services.CouponApi\Sekmen.Commerce.Services.CouponApi.csproj", "{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Items", "_Items", "{AB016603-589D-473B-A896-11FC386749B0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
+	EndGlobalSection
+EndGlobal
