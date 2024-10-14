@@ -1,6 +1,0 @@
-@Sekmen.Commerce.Services.CouponApi_HostAddress = http://localhost:5093
-
-GET {{Sekmen.Commerce.Services.CouponApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
