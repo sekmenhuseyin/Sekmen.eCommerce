@@ -2,9 +2,9 @@ namespace Sekmen.Commerce.WebApplication.Models;
 
 public record ResponseDto
 {
-    public object? Result { get; protected set; }
-    public bool IsSuccess { get; protected set; }
-    public string? ErrorMessage { get; protected set; }
+    public object? Result { get; set; }
+    public bool IsSuccess { get; set; }
+    public string? ErrorMessage { get; set; }
 
     public ResponseDto Success(object result)
     {

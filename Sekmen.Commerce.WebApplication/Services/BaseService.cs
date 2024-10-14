@@ -9,6 +9,11 @@ public class BaseService(
     HttpClient httpClient
 ) : IBaseService
 {
+    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
     public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
     {
         var message = new HttpRequestMessage(requestDto.HttpMethod, new Uri(requestDto.Url));
@@ -34,7 +39,7 @@ public class BaseService(
                 return new ResponseDto().Error("InternalServerError");
             default:
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<ResponseDto>(apiContent);
+                return JsonSerializer.Deserialize<ResponseDto>(apiContent, _jsonSerializerOptions);
         }
     }
 }
