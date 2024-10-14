@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sekmen.Commerce.WebApplication\Sekmen.Commerce.WebApplication.csproj" />
+      <ProjectReference Include="..\Sekmen.Commerce.Frontend.Application\Sekmen.Commerce.Frontend.Application.csproj" />
     </ItemGroup>
 
 </Project>

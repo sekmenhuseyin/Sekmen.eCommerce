@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Web.Controllers;
+namespace Sekmen.Commerce.Frontend.Web.Controllers;
 
 public class HomeController : Controller
 {

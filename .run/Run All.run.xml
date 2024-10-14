@@ -21,7 +21,7 @@
         </option>
         <option name="executable">
           <ExecutableSnapshot>
-            <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.Web: IIS Express" />
+            <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.Frontend.Web: IIS Express" />
           </ExecutableSnapshot>
         </option>
       </ExecutableRowSnapshot>

@@ -22,9 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.CouponApplication", "Sekmen.Commerce.Services.CouponApplication\Sekmen.Commerce.Services.CouponApplication.csproj", "{17A6165A-9E33-47BF-AD66-0FC0700E23F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Web", "Sekmen.Commerce.Web\Sekmen.Commerce.Web.csproj", "{24D2E0D4-CA11-4E41-BD1F-277CC4785BB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Frontend.Web", "Frontend\Sekmen.Commerce.Frontend.Web\Sekmen.Commerce.Frontend.Web.csproj", "{24D2E0D4-CA11-4E41-BD1F-277CC4785BB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.WebApplication", "Sekmen.Commerce.WebApplication\Sekmen.Commerce.WebApplication.csproj", "{349614AD-ED2D-4DFE-8318-A528EC181CB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Frontend.Application", "Frontend\Sekmen.Commerce.Frontend.Application\Sekmen.Commerce.Frontend.Application.csproj", "{349614AD-ED2D-4DFE-8318-A528EC181CB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
