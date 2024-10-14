@@ -1,3 +1,5 @@
+using Sekmen.Commerce.Services.CouponApi.Models;
+
 namespace Sekmen.Commerce.Services.CouponApi.Controllers;
 
 [Route("api/[controller]")]
@@ -9,42 +11,52 @@ public class CouponController(
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await mediatr.Send(new GetAllCouponQuery()));
+        var coupons = await mediatr.Send(new GetAllCouponQuery()); 
+        return Ok(new ResponseDto().Success(coupons));
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
         var coupon = await mediatr.Send(new GetByIdCouponQuery(id));
-        return coupon == null
-            ? NotFound()
-            : Ok(coupon);
+        return Ok(coupon == null
+         ? new ResponseDto().NotFound()
+         : new ResponseDto().Success(coupon));
     }
 
     [HttpGet("{code}")]
     public async Task<IActionResult> GetById([FromRoute] string code)
     {
         var coupon = await mediatr.Send(new GetByCodeCouponQuery(code));
-        return coupon == null
-            ? NotFound()
-            : Ok(coupon);
+        return Ok(coupon == null
+            ? new ResponseDto().NotFound()
+            : new ResponseDto().Success(coupon));
     }
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CouponDto couponDto)
     {
-        return Ok(await mediatr.Send(new CreateCouponCommand(couponDto)));
+        var result = await mediatr.Send(new CreateCouponCommand(couponDto));
+        return Ok(result
+            ? new ResponseDto().Error("error")
+            : new ResponseDto().Success(couponDto));
     }
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] CouponDto couponDto)
     {
-        return Ok(await mediatr.Send(new UpdateCouponCommand(couponDto)));
+        var result = await mediatr.Send(new UpdateCouponCommand(couponDto));
+        return Ok(result
+            ? new ResponseDto().Error("error")
+            : new ResponseDto().Success(couponDto));
     }
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
-        return Ok(await mediatr.Send(new DeleteCouponCommand(id)));
+        var result = await mediatr.Send(new DeleteCouponCommand(id));
+        return Ok(result
+            ? new ResponseDto().Error("error")
+            : new ResponseDto().Success(true));
     }
 }
