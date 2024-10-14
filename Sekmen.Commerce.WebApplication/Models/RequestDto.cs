@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Web.Models;
+namespace Sekmen.Commerce.WebApplication.Models;
 
 public record RequestDto(string Url)
 {

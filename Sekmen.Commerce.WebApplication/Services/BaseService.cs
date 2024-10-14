@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Web.Services;
+namespace Sekmen.Commerce.WebApplication.Services;
 
 public interface IBaseService
 {
