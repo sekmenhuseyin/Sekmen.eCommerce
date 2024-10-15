@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace Sekmen.Commerce.Services.Auth.Api.Extensions;
 
 public static class WebApplicationExtensions
@@ -9,7 +11,10 @@ public static class WebApplicationExtensions
             //.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-            );
+            )
+            .AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AuthDbContext>()
+            .AddDefaultTokenProviders();
     }
 
     internal static void ApplyMigrations(this WebApplication app)
