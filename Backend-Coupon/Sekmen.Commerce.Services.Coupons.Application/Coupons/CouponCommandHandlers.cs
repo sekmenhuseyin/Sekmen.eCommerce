@@ -1,5 +1,4 @@
-// ReSharper disable UnusedType.Global
-namespace Sekmen.Commerce.Services.CouponApplication.Coupons;
+namespace Sekmen.Commerce.Services.Coupons.Application.Coupons;
 
 public record CreateCouponCommand(CouponDto CouponDto) : ICommand<bool>;
 public record UpdateCouponCommand(CouponDto CouponDto) : ICommand<bool>;

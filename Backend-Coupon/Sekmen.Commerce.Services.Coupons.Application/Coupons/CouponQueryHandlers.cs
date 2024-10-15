@@ -1,5 +1,5 @@
 // ReSharper disable UnusedType.Global
-namespace Sekmen.Commerce.Services.CouponApplication.Coupons;
+namespace Sekmen.Commerce.Services.Coupons.Application.Coupons;
 
 public record GetAllCouponQuery : IQuery<CouponDto[]>;
 public record GetByIdCouponQuery(int Id) : IQuery<CouponDto?>;

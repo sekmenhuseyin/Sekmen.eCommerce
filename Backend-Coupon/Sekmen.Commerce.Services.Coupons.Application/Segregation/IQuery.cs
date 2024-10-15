@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApplication.Segregation;
+namespace Sekmen.Commerce.Services.Coupons.Application.Segregation;
 
 public interface IQuery<out TResponse> : IRequest<TResponse>;
 

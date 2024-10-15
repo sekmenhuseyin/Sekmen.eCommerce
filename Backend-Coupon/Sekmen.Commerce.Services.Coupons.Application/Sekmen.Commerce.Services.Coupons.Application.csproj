@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sekmen.Commerce.Services.CouponInfrastructure\Sekmen.Commerce.Services.CouponInfrastructure.csproj" />
+      <ProjectReference Include="..\Sekmen.Commerce.Services.Coupons.Infrastructure\Sekmen.Commerce.Services.Coupons.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

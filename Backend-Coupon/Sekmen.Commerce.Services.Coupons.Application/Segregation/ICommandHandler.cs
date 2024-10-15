@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApplication.Segregation;
+namespace Sekmen.Commerce.Services.Coupons.Application.Segregation;
 
 public interface ICommandHandler<in TCommand> : IRequestHandler<TCommand>
     where TCommand : ICommand;
