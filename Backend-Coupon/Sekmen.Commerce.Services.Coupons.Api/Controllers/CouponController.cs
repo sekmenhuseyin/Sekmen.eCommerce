@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApi.Controllers;
+namespace Sekmen.Commerce.Services.Coupons.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

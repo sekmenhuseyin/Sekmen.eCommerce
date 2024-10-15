@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApi.Extensions;
+namespace Sekmen.Commerce.Services.Coupons.Api.Extensions;
 
 public static class WebApplicationExtensions
 {

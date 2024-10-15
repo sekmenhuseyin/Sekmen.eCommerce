@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sekmen.Commerce.Services.CouponApplication\Sekmen.Commerce.Services.CouponApplication.csproj" />
+      <ProjectReference Include="..\Sekmen.Commerce.Services.Coupons.Application\Sekmen.Commerce.Services.Coupons.Application.csproj" />
     </ItemGroup>
 
 </Project>

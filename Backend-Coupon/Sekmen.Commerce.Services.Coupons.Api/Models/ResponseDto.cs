@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.CouponApi.Models;
+namespace Sekmen.Commerce.Services.Coupons.Api.Models;
 
 public record ResponseDto
 {
