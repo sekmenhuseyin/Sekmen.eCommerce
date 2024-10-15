@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sekmen.Commerce.Services.CouponInfrastructure;
+using Sekmen.Commerce.Services.Coupons.Infrastructure;
 
 #nullable disable
 
-namespace Sekmen.Commerce.Services.CouponInfrastructure
+namespace Sekmen.Commerce.Services.Coupons.Infrastructure
 {
     [DbContext(typeof(CouponDbContext))]
     [Migration("20241014082227_Initialization")]

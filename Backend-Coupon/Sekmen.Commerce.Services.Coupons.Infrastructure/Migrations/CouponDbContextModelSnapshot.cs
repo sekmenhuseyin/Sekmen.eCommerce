@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sekmen.Commerce.Services.CouponInfrastructure;
+using Sekmen.Commerce.Services.Coupons.Infrastructure;
 
 #nullable disable
 
-namespace Sekmen.Commerce.Services.CouponInfrastructure
+namespace Sekmen.Commerce.Services.Coupons.Infrastructure
 {
     [DbContext(typeof(CouponDbContext))]
     partial class CouponDbContextModelSnapshot : ModelSnapshot
