@@ -48,7 +48,6 @@ public class CouponController(ICouponService couponService) : Controller
         return View(couponDto);
     }
 
-    [HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
         _ = await couponService.DeleteAsync(id);
