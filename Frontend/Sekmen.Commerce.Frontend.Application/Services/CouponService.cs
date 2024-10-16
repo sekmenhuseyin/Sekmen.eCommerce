@@ -5,9 +5,9 @@ public interface ICouponService
     Task<List<CouponDto>> GetAllAsync();
     Task<CouponDto?> GetAsync(string code);
     Task<CouponDto?> GetAsync(int id);
-    Task<ResponseDto?> CreateAsync(CouponDto couponDto);
-    Task<ResponseDto?> UpdateAsync(CouponDto couponDto);
-    Task<ResponseDto?> DeleteAsync(int id);
+    Task<Result<object?>> CreateAsync(CouponDto couponDto);
+    Task<Result<object?>> UpdateAsync(CouponDto couponDto);
+    Task<Result<object?>> DeleteAsync(int id);
 }
 
 public class CouponService(
@@ -21,8 +21,8 @@ public class CouponService(
     {
         var response = await SendAsync(new RequestDto(_baseUrl));
 
-        return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
-            ? JsonSerializer.Deserialize<List<CouponDto>>(response.Result.ToString()!, SerializerOptions)!
+        return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
+            ? JsonSerializer.Deserialize<List<CouponDto>>(response.Value.ToString()!, SerializerOptions)!
             : [];
     }
 
@@ -30,8 +30,8 @@ public class CouponService(
     {
         var response = await SendAsync(new RequestDto(_baseUrl + code));
 
-        return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
-            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!, SerializerOptions)
+        return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
+            ? JsonSerializer.Deserialize<CouponDto>(response.Value.ToString()!, SerializerOptions)
             : null;
     }
 
@@ -39,12 +39,12 @@ public class CouponService(
     {
         var response = await SendAsync(new RequestDto(_baseUrl + id));
 
-        return response is not null && response.IsSuccess && !string.IsNullOrWhiteSpace(response.Result?.ToString())
-            ? JsonSerializer.Deserialize<CouponDto>(response.Result.ToString()!, SerializerOptions)
+        return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
+            ? JsonSerializer.Deserialize<CouponDto>(response.Value.ToString()!, SerializerOptions)
             : null;
     }
 
-    public async Task<ResponseDto?> CreateAsync(CouponDto couponDto)
+    public async Task<Result<object?>> CreateAsync(CouponDto couponDto)
     {
         return await SendAsync(new RequestDto(_baseUrl)
         {
@@ -53,7 +53,7 @@ public class CouponService(
         });
     }
 
-    public async Task<ResponseDto?> UpdateAsync(CouponDto couponDto)
+    public async Task<Result<object?>> UpdateAsync(CouponDto couponDto)
     {
         return await SendAsync(new RequestDto(_baseUrl)
         {
@@ -62,7 +62,7 @@ public class CouponService(
         });
     }
 
-    public async Task<ResponseDto?> DeleteAsync(int id)
+    public async Task<Result<object?>> DeleteAsync(int id)
     {
         return await SendAsync(new RequestDto(_baseUrl + id)
         {

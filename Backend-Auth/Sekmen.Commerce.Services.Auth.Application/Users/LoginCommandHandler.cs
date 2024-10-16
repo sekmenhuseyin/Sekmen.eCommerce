@@ -1,6 +1,6 @@
 namespace Sekmen.Commerce.Services.Auth.Application.Users;
 
-public record LoginCommand(string UserName, string Password) : ICommand<ResponseDto<LoginResponseViewModel>>;
+public record LoginCommand(string UserName, string Password) : ICommand<Result<LoginResponseViewModel>>;
 public record LoginResponseViewModel(UserDto User, string Token);
 
 internal sealed class LoginCommandHandler(
@@ -8,25 +8,25 @@ internal sealed class LoginCommandHandler(
     UserManager<ApplicationUser> userManager,
     IMapper mapper,
     IJwtTokenGenerator jwtTokenGenerator
-) : ICommandHandler<LoginCommand, ResponseDto<LoginResponseViewModel>>
+) : ICommandHandler<LoginCommand, Result<LoginResponseViewModel>>
 {
-    public async Task<ResponseDto<LoginResponseViewModel>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<LoginResponseViewModel>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await context.ApplicationUsers.FirstOrDefaultAsync(m => m.NormalizedUserName == request.UserName.ToUpperInvariant(), cancellationToken);
         if (user is null)
         {
-            return ResponseDto<LoginResponseViewModel>.NotFound();
+            return Result.Fail("User not found");
         }
 
         var isValid = await userManager.CheckPasswordAsync(user, request.Password);
         if (!isValid)
         {
-            return ResponseDto<LoginResponseViewModel>.NotFound();
+            return Result.Fail("Passwords is wrong");
         }
 
         var userDto = mapper.Map<UserDto>(user);
         var token = jwtTokenGenerator.GenerateToken(user);
         var model = new LoginResponseViewModel(userDto, token);
-        return ResponseDto<LoginResponseViewModel>.Success(model);
+        return Result.Ok();
     }
 }

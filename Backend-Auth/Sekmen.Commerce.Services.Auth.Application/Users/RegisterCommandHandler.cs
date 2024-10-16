@@ -1,12 +1,12 @@
 namespace Sekmen.Commerce.Services.Auth.Application.Users;
 
-public record RegisterCommand(string Email, string Name, string PhoneNumber, string Password) : ICommand<ResponseDto<bool>>;
+public record RegisterCommand(string Email, string Name, string PhoneNumber, string Password) : ICommand<Result<bool>>;
 
 internal sealed class RegisterCommandHandler(
     UserManager<ApplicationUser> userManager
-) : ICommandHandler<RegisterCommand, ResponseDto<bool>>
+) : ICommandHandler<RegisterCommand, Result<bool>>
 {
-    public async Task<ResponseDto<bool>> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         var user = new ApplicationUser
         {
@@ -19,11 +19,8 @@ internal sealed class RegisterCommandHandler(
         };
 
         var result = await userManager.CreateAsync(user, request.Password);
-        if (result.Succeeded)
-        {
-            return ResponseDto<bool>.Success(true);
-        }
-
-        return ResponseDto<bool>.Error(result.Errors.First().Description);
+        return result.Succeeded
+            ? Result.Ok()
+            : Result.Fail(result.Errors.First().Description);
     }
 }

@@ -20,7 +20,7 @@ public class CouponController(ICouponService couponService) : Controller
             return View(couponDto);
 
         var response = await couponService.CreateAsync(couponDto);
-        if (response is not null && response.IsSuccess)
+        if (response.IsSuccess)
             return RedirectToAction(nameof(Index));
 
         return View(couponDto);
@@ -42,7 +42,7 @@ public class CouponController(ICouponService couponService) : Controller
             return View(couponDto);
 
         var response = await couponService.UpdateAsync(couponDto);
-        if (response is not null && response.IsSuccess)
+        if (response.IsSuccess)
             return RedirectToAction(nameof(Index));
 
         return View(couponDto);

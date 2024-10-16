@@ -9,7 +9,7 @@ public class BaseService(
         PropertyNameCaseInsensitive = true
     };
 
-    public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
+    protected async Task<Result<object?>> SendAsync(RequestDto requestDto)
     {
         var message = new HttpRequestMessage(requestDto.HttpMethod, new Uri(requestDto.Url));
         message.Headers.Add("Accept", "application/json");
@@ -21,20 +21,11 @@ public class BaseService(
 
         var apiResponse = await httpClient.SendAsync(message);
 
-        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
-        switch (apiResponse.StatusCode)
-        {
-            case HttpStatusCode.NotFound:
-                return new ResponseDto().NotFound();
-            case HttpStatusCode.Forbidden:
-                return new ResponseDto().Error("Forbidden");
-            case HttpStatusCode.Unauthorized:
-                return new ResponseDto().Error("Unauthorized");
-            case HttpStatusCode.InternalServerError:
-                return new ResponseDto().Error("InternalServerError");
-            default:
-                var apiContent = await apiResponse.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<ResponseDto>(apiContent, SerializerOptions);
-        }
+        if (apiResponse.StatusCode != HttpStatusCode.OK) 
+            return Result.Fail(apiResponse.StatusCode.ToString());
+
+        var apiContent = await apiResponse.Content.ReadAsStringAsync();
+        var apiModel = JsonSerializer.Deserialize<ResponseDto>(apiContent, SerializerOptions)!;
+        return Result.Ok(apiModel.Value);
     }
 }
