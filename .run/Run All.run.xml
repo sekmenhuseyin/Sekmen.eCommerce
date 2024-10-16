@@ -9,7 +9,19 @@
         </option>
         <option name="executable">
           <ExecutableSnapshot>
-            <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.CouponApi IIS Express" />
+            <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.Services.Auth.Api: IIS Express" />
+          </ExecutableSnapshot>
+        </option>
+      </ExecutableRowSnapshot>
+      <ExecutableRowSnapshot>
+        <option name="condition">
+          <ConditionSnapshot>
+            <option name="type" value="immediately" />
+          </ConditionSnapshot>
+        </option>
+        <option name="executable">
+          <ExecutableSnapshot>
+            <option name="id" value="runConfig:.NET Launch Settings Profile.Sekmen.Commerce.Services.Coupons.Api: IIS Express" />
           </ExecutableSnapshot>
         </option>
       </ExecutableRowSnapshot>
