@@ -1,5 +1,3 @@
-using Sekmen.Commerce.Services.Auth.Application.Services;
-
 namespace Sekmen.Commerce.Services.Auth.Application.Users;
 
 public record LoginCommand(string UserName, string Password) : ICommand<ResponseDto<LoginResponseViewModel>>;
@@ -8,7 +6,6 @@ public record LoginResponseViewModel(UserDto User, string Token);
 internal sealed class LoginCommandHandler(
     AuthDbContext context,
     UserManager<ApplicationUser> userManager,
-    RoleManager<IdentityRole> roleManager,
     IMapper mapper,
     IJwtTokenGenerator jwtTokenGenerator
 ) : ICommandHandler<LoginCommand, ResponseDto<LoginResponseViewModel>>

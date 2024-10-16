@@ -8,5 +8,6 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.IdentityModel.Tokens;
 global using Sekmen.Commerce.Services.Auth.Application.Models;
 global using Sekmen.Commerce.Services.Auth.Application.Segregation;
+global using Sekmen.Commerce.Services.Auth.Application.Services;
 global using Sekmen.Commerce.Services.Auth.Domain;
 global using Sekmen.Commerce.Services.Auth.Infrastructure;

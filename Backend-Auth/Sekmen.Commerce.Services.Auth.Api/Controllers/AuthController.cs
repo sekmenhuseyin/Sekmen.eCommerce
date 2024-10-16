@@ -19,4 +19,11 @@ public class AuthController(
         var result = await mediatr.Send(command, cancellationToken);
         return Ok(result);
     }
+
+    [HttpPost("assign-role")]
+    public async Task<IActionResult> AssignRole([FromBody] AssignRoleCommand command, CancellationToken cancellationToken)
+    {
+        var result = await mediatr.Send(command, cancellationToken);
+        return Ok(result);
+    }
 }
