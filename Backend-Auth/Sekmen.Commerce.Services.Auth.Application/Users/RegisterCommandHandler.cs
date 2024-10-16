@@ -21,7 +21,6 @@ internal sealed class RegisterCommandHandler(
         var result = await userManager.CreateAsync(user, request.Password);
         if (result.Succeeded)
         {
-            // var userToReturn = await context.ApplicationUsers.FirstAsync(m => m.Email == request.Email, cancellationToken: cancellationToken);
             return ResponseDto<bool>.Success(true);
         }
 

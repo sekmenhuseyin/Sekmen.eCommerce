@@ -1,7 +1,11 @@
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;
 global using AutoMapper;
 global using MediatR;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.IdentityModel.Tokens;
 global using Sekmen.Commerce.Services.Auth.Application.Models;
 global using Sekmen.Commerce.Services.Auth.Application.Segregation;
 global using Sekmen.Commerce.Services.Auth.Domain;

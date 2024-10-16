@@ -5,7 +5,8 @@ public static class WebApplicationExtensions
     internal static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
         _ = builder.Services
-            .Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)))
+            .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
+            .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
             .AddAutoMapper(typeof(ICommand))
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<AuthDbContext>(options => 
