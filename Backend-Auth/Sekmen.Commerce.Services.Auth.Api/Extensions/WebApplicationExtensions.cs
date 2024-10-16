@@ -5,8 +5,9 @@ public static class WebApplicationExtensions
     internal static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
         _ = builder.Services
-            //.AddAutoMapper(typeof(ICommand))
-            //.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
+            .Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)))
+            .AddAutoMapper(typeof(ICommand))
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             )
