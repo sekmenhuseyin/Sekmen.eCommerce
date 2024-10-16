@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-
 namespace Sekmen.Commerce.Services.Auth.Api.Extensions;
 
 public static class WebApplicationExtensions
@@ -12,7 +10,7 @@ public static class WebApplicationExtensions
             .AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             )
-            .AddIdentity<IdentityUser, IdentityRole>()
+            .AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<AuthDbContext>()
             .AddDefaultTokenProviders();
     }
