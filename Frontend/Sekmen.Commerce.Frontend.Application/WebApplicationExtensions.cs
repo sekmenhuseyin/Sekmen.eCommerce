@@ -19,7 +19,7 @@ public static class WebApplicationExtensions
             {
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
                 options.LoginPath = "/auth/login";
-                options.AccessDeniedPath = "auth/access-denied";
+                options.AccessDeniedPath = "/auth/access-denied";
             });
     }
 }

@@ -11,6 +11,12 @@ public class AuthController(
         return View();
     }
 
+    [HttpGet("access-denied")]
+    public IActionResult AccessDenied()
+    {
+        return View(nameof(Login));
+    }
+
     [HttpPost]
     public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
