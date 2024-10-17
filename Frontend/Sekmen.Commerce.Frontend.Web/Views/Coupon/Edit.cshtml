@@ -2,7 +2,11 @@
 @{
     ViewData["Title"] = "Edit Coupon";
 }
-<h1>Create Coupon</h1>
+<div class="container border p-4">
+    <div class="row text-center">
+        <h1>Edit Coupon</h1>
+    </div>
+</div>
 <form asp-action="Edit" method="post">
     <input asp-for="Id" type="hidden" />
     <div class="row">
@@ -35,7 +39,7 @@
     <div class="row">
         <div class="col-10 offset-2">
             <a asp-action="Index" class="btn btn-secondary">Back To List</a>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-success">Update</button>
         </div>
     </div>
 </form>
