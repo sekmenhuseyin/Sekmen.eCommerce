@@ -24,9 +24,12 @@ internal sealed class LoginCommandHandler(
             return Result.Fail("Passwords is wrong");
         }
 
+        var roles = await userManager.GetRolesAsync(user);
+        var token = jwtTokenGenerator.GenerateToken(user, roles);
+
         var userDto = mapper.Map<UserDto>(user);
-        var token = jwtTokenGenerator.GenerateToken(user);
         var model = new LoginResponseViewModel(userDto, token);
+
         return Result.Ok(model);
     }
 }

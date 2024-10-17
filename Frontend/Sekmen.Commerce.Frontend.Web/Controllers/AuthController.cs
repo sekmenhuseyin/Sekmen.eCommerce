@@ -62,6 +62,7 @@ public class AuthController(
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        tokenProviderService.ClearToken();
         return RedirectToAction(nameof(Index), HomeController.Name);
     }
 
@@ -74,7 +75,8 @@ public class AuthController(
             new Claim(JwtRegisteredClaimNames.Sub, GetValue(claims, JwtRegisteredClaimNames.Sub)),
             new Claim(JwtRegisteredClaimNames.Name, GetValue(claims, JwtRegisteredClaimNames.Name)),
             new Claim(JwtRegisteredClaimNames.Email, GetValue(claims, JwtRegisteredClaimNames.Email)),
-            new Claim(ClaimTypes.Name, GetValue(claims, JwtRegisteredClaimNames.Email))
+            new Claim(ClaimTypes.Name, GetValue(claims, JwtRegisteredClaimNames.Email)),
+            new Claim(ClaimTypes.Role, GetValue(claims, "role"))
         };
         identity.AddClaims(newClaims);
 
