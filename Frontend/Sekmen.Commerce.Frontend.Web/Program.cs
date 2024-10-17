@@ -1,15 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-_ = builder.Services
-    .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
-    .AddHttpContextAccessor()
-    .AddHttpClient()
-    .AddScoped<BaseService>()
-    .AddScoped<ICouponService, CouponService>()
-    .AddScoped<IAuthService, AuthService>();
-_ = builder.Services.AddHttpClient<ICouponService, CouponService>();
-_ = builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.AddInternalDependencies();
 _ = builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -25,6 +17,7 @@ _ = app
     .UseHttpsRedirection()
     .UseStaticFiles()
     .UseRouting()
+    .UseAuthentication()
     .UseAuthorization();
 
 _ = app.MapControllerRoute(

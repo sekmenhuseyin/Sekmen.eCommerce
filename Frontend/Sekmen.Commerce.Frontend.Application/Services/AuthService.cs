@@ -2,7 +2,7 @@ namespace Sekmen.Commerce.Frontend.Application.Services;
 
 public interface IAuthService
 {
-    Task<Result<object?>> LoginAsync(LoginCommand command);
+    Task<Result<LoginResponseViewModel?>> LoginAsync(LoginCommand command);
     Task<Result<object?>> RegisterAsync(RegisterCommand command);
     Task<Result<object?>> AssignRoleAsync(AssignRoleCommand command);
 }
@@ -14,13 +14,17 @@ public sealed class AuthService(
 {
     private readonly string _baseUrl = appSettings.Services.AuthApi.Url + "api/auth/";
 
-    public async Task<Result<object?>> LoginAsync(LoginCommand command)
+    public async Task<Result<LoginResponseViewModel?>> LoginAsync(LoginCommand command)
     {
-        return await SendAsync(new RequestDto(_baseUrl + "login")
+        var response = await SendAsync(new RequestDto(_baseUrl + "login")
         {
             HttpMethod = HttpMethod.Post,
             Data = command
         });
+
+        return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
+            ? JsonSerializer.Deserialize<LoginResponseViewModel>(response.Value.ToString()!, SerializerOptions)
+            : null;
     }
 
     public async Task<Result<object?>> RegisterAsync(RegisterCommand command)

@@ -2,6 +2,7 @@ namespace Sekmen.Commerce.Frontend.Web.Controllers;
 
 public class HomeController : Controller
 {
+    public const string Name = "Home";
     public IActionResult Index()
     {
         return View();

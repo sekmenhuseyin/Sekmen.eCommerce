@@ -17,4 +17,8 @@
       <ProjectReference Include="..\Sekmen.Commerce.Frontend.Application\Sekmen.Commerce.Frontend.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
+    </ItemGroup>
+
 </Project>

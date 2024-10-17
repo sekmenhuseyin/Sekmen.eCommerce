@@ -27,6 +27,6 @@ internal sealed class LoginCommandHandler(
         var userDto = mapper.Map<UserDto>(user);
         var token = jwtTokenGenerator.GenerateToken(user);
         var model = new LoginResponseViewModel(userDto, token);
-        return Result.Ok();
+        return Result.Ok(model);
     }
 }

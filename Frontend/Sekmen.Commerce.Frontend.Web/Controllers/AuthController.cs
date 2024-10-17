@@ -1,8 +1,9 @@
-using Sekmen.Commerce.Frontend.Application.Models.Auth;
-
 namespace Sekmen.Commerce.Frontend.Web.Controllers;
 
-public class AuthController(IAuthService authService) : Controller
+public class AuthController(
+    IAuthService authService,
+    ITokenProviderService tokenProviderService
+) : Controller
 {
     [HttpGet]
     public IActionResult Login()
@@ -14,23 +15,21 @@ public class AuthController(IAuthService authService) : Controller
     public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
         var result = await authService.LoginAsync(command);
-        if (result.IsSuccess)
+        if (result.IsSuccess && !string.IsNullOrWhiteSpace(result.Value?.Token))
         {
-            return Redirect("/");
+            await SignInUser(result.Value.Token);
+            tokenProviderService.SetToken(result.Value.Token);
+            return RedirectToAction(nameof(Index), HomeController.Name);
         }
 
+        ModelState.AddModelError("CustomError", result.Errors.First().Message);
         return View(command);
     }
 
     [HttpGet]
     public IActionResult Register()
     {
-        var roleList = new List<SelectListItem>
-        {
-            new() { Text = RoleConstants.RoleAdmin, Value = RoleConstants.RoleAdmin },
-            new() { Text = RoleConstants.RoleCustomer, Value = RoleConstants.RoleCustomer }
-        };
-        ViewBag.RoleList = roleList;
+        ViewBag.RoleList = GenerateRoles();
 
         return View();
     }
@@ -42,25 +41,53 @@ public class AuthController(IAuthService authService) : Controller
         if (result.IsSuccess)
         {
             var assignRoleCommand = new AssignRoleCommand(command.Email,
-                string.IsNullOrWhiteSpace(command.Role) ? RoleConstants.RoleCustomer : command.Role);
+                string.IsNullOrWhiteSpace(command.Role) ? AuthConstants.RoleCustomer : command.Role);
             _ = await authService.AssignRoleAsync(assignRoleCommand);
 
             return RedirectToAction(nameof(Login));
         }
 
-        var roleList = new List<SelectListItem>
-        {
-            new() { Text = RoleConstants.RoleAdmin, Value = RoleConstants.RoleAdmin },
-            new() { Text = RoleConstants.RoleCustomer, Value = RoleConstants.RoleCustomer }
-        };
-        ViewBag.RoleList = roleList;
+        ViewBag.RoleList = GenerateRoles();
 
         return View(command);
     }
 
     [HttpGet]
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout()
     {
-        return Redirect("/");
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction(nameof(Index), HomeController.Name);
+    }
+
+    private async Task SignInUser(string token)
+    {
+        var claims = new JwtSecurityTokenHandler().ReadJwtToken(token).Claims.ToArray();
+        var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+        var newClaims =new[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, GetValue(claims, JwtRegisteredClaimNames.Sub)),
+            new Claim(JwtRegisteredClaimNames.Name, GetValue(claims, JwtRegisteredClaimNames.Name)),
+            new Claim(JwtRegisteredClaimNames.Email, GetValue(claims, JwtRegisteredClaimNames.Email)),
+            new Claim(ClaimTypes.Name, GetValue(claims, JwtRegisteredClaimNames.Email))
+        };
+        identity.AddClaims(newClaims);
+
+        var principal = new ClaimsPrincipal(identity);
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+    }
+
+    private static string GetValue(Claim[] claims, string type)
+    {
+        return claims.FirstOrDefault(m => m.Type == JwtRegisteredClaimNames.Sub)?.Value ?? string.Empty;
+    }
+
+    private static List<SelectListItem> GenerateRoles()
+    {
+        var roleList = new List<SelectListItem>
+        {
+            new() { Text = AuthConstants.RoleAdmin, Value = AuthConstants.RoleAdmin },
+            new() { Text = AuthConstants.RoleCustomer, Value = AuthConstants.RoleCustomer }
+        };
+        return roleList;
     }
 }
