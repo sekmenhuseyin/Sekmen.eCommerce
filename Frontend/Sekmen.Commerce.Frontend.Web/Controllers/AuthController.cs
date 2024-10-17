@@ -17,7 +17,7 @@ public class AuthController(
         return View(nameof(Login));
     }
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginCommand command)
     {
         var result = await authService.LoginAsync(command);
@@ -40,7 +40,7 @@ public class AuthController(
         return View();
     }
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterCommand command)
     {
         var result = await authService.RegisterAsync(command);

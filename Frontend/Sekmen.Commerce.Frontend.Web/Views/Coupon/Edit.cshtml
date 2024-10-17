@@ -3,6 +3,8 @@
     ViewData["Title"] = "Edit Coupon";
 }
 <form asp-action="Edit" method="post">
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <div class="container border p-4">
         <div class="row text-center">
             <h1>Edit Coupon</h1>

@@ -13,7 +13,7 @@ public class CouponController(ICouponService couponService) : Controller
         return View();
     }
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CouponDto couponDto)
     {
         if (!ModelState.IsValid)
@@ -35,7 +35,7 @@ public class CouponController(ICouponService couponService) : Controller
         return View(coupon);
     }
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(CouponDto couponDto)
     {
         if (!ModelState.IsValid)
