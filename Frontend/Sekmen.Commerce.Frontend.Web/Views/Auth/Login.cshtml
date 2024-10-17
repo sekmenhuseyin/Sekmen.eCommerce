@@ -3,6 +3,7 @@
     ViewData["Title"] = "Login";
 }
 <form method="post">
+    @Html.ValidationMessage("CustomError")
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
     <div class="container border p-4">

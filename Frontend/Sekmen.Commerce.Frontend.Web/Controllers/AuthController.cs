@@ -53,6 +53,7 @@ public class AuthController(
             return RedirectToAction(nameof(Login));
         }
 
+        ModelState.AddModelError("CustomError", result.Errors.First().Message);
         ViewBag.RoleList = GenerateRoles();
 
         return View(command);

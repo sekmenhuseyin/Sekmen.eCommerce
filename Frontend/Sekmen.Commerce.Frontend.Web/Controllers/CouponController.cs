@@ -23,6 +23,7 @@ public class CouponController(ICouponService couponService) : Controller
         if (response.IsSuccess)
             return RedirectToAction(nameof(Index));
 
+        ModelState.AddModelError("CustomError", response.Errors.First().Message);
         return View(couponDto);
     }
 
@@ -45,6 +46,7 @@ public class CouponController(ICouponService couponService) : Controller
         if (response.IsSuccess)
             return RedirectToAction(nameof(Index));
 
+        ModelState.AddModelError("CustomError", response.Errors.First().Message);
         return View(couponDto);
     }
 
