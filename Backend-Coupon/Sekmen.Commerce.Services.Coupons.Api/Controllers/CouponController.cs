@@ -29,6 +29,7 @@ public class CouponController(
     }
 
     [HttpPost]
+    [Authorize(Roles = AuthConstants.RoleAdmin)]
     public async Task<IActionResult> Create([FromBody] CouponDto couponDto, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(new CreateCouponCommand(couponDto), cancellationToken);
@@ -36,6 +37,7 @@ public class CouponController(
     }
 
     [HttpPut]
+    [Authorize(Roles = AuthConstants.RoleAdmin)]
     public async Task<IActionResult> Update([FromBody] CouponDto couponDto, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(new UpdateCouponCommand(couponDto), cancellationToken);
@@ -43,6 +45,7 @@ public class CouponController(
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = AuthConstants.RoleAdmin)]
     public async Task<IActionResult> Delete([FromRoute] int id, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(new DeleteCouponCommand(id), cancellationToken);
