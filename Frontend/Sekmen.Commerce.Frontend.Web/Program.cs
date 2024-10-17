@@ -7,9 +7,10 @@ _ = builder.Services
     .AddHttpClient()
     .AddScoped<BaseService>()
     .AddScoped<ICouponService, CouponService>()
-    .AddHttpClient<ICouponService, CouponService>();
-_ = builder.Services
-    .AddControllersWithViews();
+    .AddScoped<IAuthService, AuthService>();
+_ = builder.Services.AddHttpClient<ICouponService, CouponService>();
+_ = builder.Services.AddHttpClient<IAuthService, AuthService>();
+_ = builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -20,13 +21,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app
+_ = app
     .UseHttpsRedirection()
     .UseStaticFiles()
     .UseRouting()
     .UseAuthorization();
 
-app.MapControllerRoute(
+_ = app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 

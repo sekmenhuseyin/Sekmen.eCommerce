@@ -10,7 +10,7 @@ public interface ICouponService
     Task<Result<object?>> DeleteAsync(int id);
 }
 
-public class CouponService(
+public sealed class CouponService(
     HttpClient httpClient,
     AppSettingsModel appSettings
 ) : BaseService(httpClient), ICouponService
