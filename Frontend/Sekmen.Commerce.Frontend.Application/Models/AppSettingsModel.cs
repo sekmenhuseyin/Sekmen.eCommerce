@@ -8,6 +8,7 @@ public class AppSettingsModel
 public class ServicesModel
 {
     public UrlModel CouponApi { get; init; } = new();
+    public UrlModel AuthApi { get; init; } = new();
 }
 
 public class UrlModel
