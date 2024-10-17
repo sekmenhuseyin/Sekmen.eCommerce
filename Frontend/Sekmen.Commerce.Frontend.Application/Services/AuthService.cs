@@ -9,8 +9,9 @@ public interface IAuthService
 
 public sealed class AuthService(
     HttpClient httpClient,
-    AppSettingsModel appSettings
-) : BaseService(httpClient), IAuthService
+    AppSettingsModel appSettings,
+    ITokenProviderService tokenProviderService
+) : BaseService(httpClient, tokenProviderService), IAuthService
 {
     private readonly string _baseUrl = appSettings.Services.AuthApi.Url + "api/auth/";
 
@@ -20,7 +21,7 @@ public sealed class AuthService(
         {
             HttpMethod = HttpMethod.Post,
             Data = command
-        });
+        }, false);
 
         return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
             ? Result.Ok(JsonSerializer.Deserialize<LoginResponseViewModel?>(response.Value.ToString()!, SerializerOptions))
@@ -33,7 +34,7 @@ public sealed class AuthService(
         {
             HttpMethod = HttpMethod.Post,
             Data = command
-        });
+        }, false);
     }
 
     public async Task<Result<object?>> AssignRoleAsync(AssignRoleCommand command)

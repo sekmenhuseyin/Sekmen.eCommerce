@@ -12,8 +12,9 @@ public interface ICouponService
 
 public sealed class CouponService(
     HttpClient httpClient,
-    AppSettingsModel appSettings
-) : BaseService(httpClient), ICouponService
+    AppSettingsModel appSettings,
+    ITokenProviderService tokenProviderService
+) : BaseService(httpClient, tokenProviderService), ICouponService
 {
     private readonly string _baseUrl = appSettings.Services.CouponApi.Url + "api/coupon/";
 
