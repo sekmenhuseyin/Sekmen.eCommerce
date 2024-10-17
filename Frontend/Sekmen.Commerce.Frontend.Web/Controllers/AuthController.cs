@@ -18,7 +18,7 @@ public class AuthController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login([FromBody] LoginCommand command)
+    public async Task<IActionResult> Login(LoginCommand command)
     {
         var result = await authService.LoginAsync(command);
         if (result.IsSuccess && !string.IsNullOrWhiteSpace(result.Value?.Token))
@@ -41,7 +41,7 @@ public class AuthController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> Register([FromBody] RegisterCommand command)
+    public async Task<IActionResult> Register(RegisterCommand command)
     {
         var result = await authService.RegisterAsync(command);
         if (result.IsSuccess)
@@ -84,7 +84,7 @@ public class AuthController(
 
     private static string GetValue(Claim[] claims, string type)
     {
-        return claims.FirstOrDefault(m => m.Type == JwtRegisteredClaimNames.Sub)?.Value ?? string.Empty;
+        return claims.FirstOrDefault(m => m.Type == type)?.Value ?? string.Empty;
     }
 
     private static List<SelectListItem> GenerateRoles()

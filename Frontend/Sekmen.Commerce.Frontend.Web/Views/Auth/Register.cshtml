@@ -2,46 +2,49 @@
 @{
     ViewData["Title"] = "Login";
 }
-<div class="container border p-4">
-    <div class="row text-center">
-        <h1>Register</h1>
-    </div>
-</div>
 <form method="post">
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 pb-2">
-            <input asp-for="Name" placeholder="Name" class="form-control"/>
-            <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="container border p-4">
+        <div class="row text-center">
+            <h1>Register</h1>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 pb-2">
-            <input asp-for="Email" placeholder="Email" class="form-control"/>
-            <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="row text-center">
+            <div asp-validation-summary="All" class="text-danger"></div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 pb-2">
-            <input asp-for="PhoneNumber" placeholder="Phone" class="form-control"/>
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 pb-2">
+                <input asp-for="Name" placeholder="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 pb-2">
-            <input asp-for="Password" placeholder="Password" class="form-control"/>
-            <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 pb-2">
+                <input asp-for="Email" placeholder="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 pb-2">
-            <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleList">
-                <option disabled="disabled" selected="selected">--Select Role--</option>
-            </select>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 pb-2">
+                <input asp-for="PhoneNumber" placeholder="Phone" class="form-control"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 pb-2">
-            <button type="submit" class="btn btn-success">Login</button>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 pb-2">
+                <input asp-for="Password" placeholder="Password" class="form-control"/>
+                <span asp-validation-for="Password" type="password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 pb-2">
+                <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleList">
+                    <option disabled="disabled" selected="selected">--Select Role--</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 pb-2">
+                <button type="submit" class="btn btn-success">Register</button>
+            </div>
         </div>
     </div>
 </form>
