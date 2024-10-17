@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Frontend.Application.Models;
+namespace Sekmen.Commerce.Frontend.Application.Models.Coupons;
 
 public record CouponDto(
     int Id,
