@@ -3,13 +3,13 @@
     ViewData["Title"] = "Login";
 }
 <form method="post">
-    @Html.ValidationMessage("CustomError")
-    @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
     <div class="container border p-4">
         <div class="row text-center">
             <h1>Login</h1>
         </div>
+        @Html.ValidationMessage("CustomError")
+        @Html.ValidationSummary(true)
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3 pb-2">
                 <input asp-for="UserName" placeholder="Username" class="form-control"/>

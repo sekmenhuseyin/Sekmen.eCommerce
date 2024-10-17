@@ -20,7 +20,7 @@ internal sealed class RegisterCommandHandler(
 
         var result = await userManager.CreateAsync(user, request.Password);
         return result.Succeeded
-            ? Result.Ok()
-            : Result.Fail(result.Errors.First().Description);
+            ? Result.Ok(true)
+            : Result.Fail<bool>(result.Errors.First().Description);
     }
 }

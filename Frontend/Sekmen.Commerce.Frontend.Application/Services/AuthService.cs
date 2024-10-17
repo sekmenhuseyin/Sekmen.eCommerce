@@ -23,8 +23,8 @@ public sealed class AuthService(
         });
 
         return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
-            ? JsonSerializer.Deserialize<LoginResponseViewModel>(response.Value.ToString()!, SerializerOptions)
-            : null;
+            ? Result.Ok(JsonSerializer.Deserialize<LoginResponseViewModel?>(response.Value.ToString()!, SerializerOptions))
+            : Result.Fail<LoginResponseViewModel?>(response.Error);
     }
 
     public async Task<Result<object?>> RegisterAsync(RegisterCommand command)

@@ -28,7 +28,7 @@ internal sealed class GetCouponQueryHandler(
             .FirstOrDefaultAsync(m => m.Id == request.Id, cancellationToken);
 
         return model == null
-            ? Result.Fail("Coupon not found")
+            ? Result.Fail<CouponDto>("Coupon not found")
             : Result.Ok(mapper.Map<CouponDto>(model));
     }
 
@@ -38,7 +38,7 @@ internal sealed class GetCouponQueryHandler(
             .FirstOrDefaultAsync(m => m.Code.ToUpper() == request.Code.ToUpper(), cancellationToken);
 
         return model == null
-            ? Result.Fail("Coupon not found")
+            ? Result.Fail<CouponDto>("Coupon not found")
             : Result.Ok(mapper.Map<CouponDto>(model));
     }
 }

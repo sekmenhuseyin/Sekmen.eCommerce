@@ -22,10 +22,9 @@ public class BaseService(
         var apiResponse = await httpClient.SendAsync(message);
 
         if (apiResponse.StatusCode != HttpStatusCode.OK) 
-            return Result.Fail(apiResponse.StatusCode.ToString());
+            return Result.Fail<object?>(apiResponse.StatusCode.ToString());
 
         var apiContent = await apiResponse.Content.ReadAsStringAsync();
-        var apiModel = JsonSerializer.Deserialize<ResponseDto>(apiContent, SerializerOptions)!;
-        return Result.Ok(apiModel.Value);
+        return JsonSerializer.Deserialize<Result<object?>>(apiContent, SerializerOptions)!;
     }
 }

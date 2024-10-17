@@ -2,7 +2,6 @@ global using System.ComponentModel.DataAnnotations;
 global using System.Net;
 global using System.Text;
 global using System.Text.Json;
-global using FluentResults;
 global using Microsoft.AspNetCore.Authentication.Cookies;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.Configuration;

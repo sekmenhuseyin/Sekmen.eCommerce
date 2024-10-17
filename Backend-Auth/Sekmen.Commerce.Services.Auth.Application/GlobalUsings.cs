@@ -2,7 +2,6 @@ global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
 global using System.Text;
 global using AutoMapper;
-global using FluentResults;
 global using MediatR;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;

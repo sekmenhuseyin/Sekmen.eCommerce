@@ -15,13 +15,13 @@ internal sealed class LoginCommandHandler(
         var user = await context.ApplicationUsers.FirstOrDefaultAsync(m => m.NormalizedUserName == request.UserName.ToUpperInvariant(), cancellationToken);
         if (user is null)
         {
-            return Result.Fail("User not found");
+            return Result.Fail<LoginResponseViewModel>("User not found");
         }
 
         var isValid = await userManager.CheckPasswordAsync(user, request.Password);
         if (!isValid)
         {
-            return Result.Fail("Passwords is wrong");
+            return Result.Fail<LoginResponseViewModel>("Passwords is wrong");
         }
 
         var roles = await userManager.GetRolesAsync(user);

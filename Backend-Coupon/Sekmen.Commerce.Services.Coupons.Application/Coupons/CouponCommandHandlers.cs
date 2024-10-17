@@ -18,7 +18,7 @@ internal sealed class CreateCouponCommandHandler(
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(request.CouponDto)
-            : Result.Fail("DB exception");
+            : Result.Fail<CouponDto>("DB exception");
     }
 
     public async Task<Result<CouponDto>> Handle(UpdateCouponCommand request, CancellationToken cancellationToken)
@@ -28,7 +28,7 @@ internal sealed class CreateCouponCommandHandler(
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(request.CouponDto)
-            : Result.Fail("DB exception");
+            : Result.Fail<CouponDto>("DB exception");
     }
 
     public async Task<Result<bool>> Handle(DeleteCouponCommand request, CancellationToken cancellationToken)
@@ -41,6 +41,6 @@ internal sealed class CreateCouponCommandHandler(
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(true)
-            : Result.Fail("DB exception");
+            : Result.Fail<bool>("DB exception");
     }
 }

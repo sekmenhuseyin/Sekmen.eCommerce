@@ -3,13 +3,13 @@
     ViewData["Title"] = "Edit Coupon";
 }
 <form asp-action="Edit" method="post">
-    @Html.ValidationMessage("CustomError")
-    @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
     <div class="container border p-4">
         <div class="row text-center">
             <h1>Edit Coupon</h1>
         </div>
+        @Html.ValidationMessage("CustomError")
+        @Html.ValidationSummary(true)
         <input asp-for="Id" type="hidden" />
         <div class="row">
             <div class="col-2">

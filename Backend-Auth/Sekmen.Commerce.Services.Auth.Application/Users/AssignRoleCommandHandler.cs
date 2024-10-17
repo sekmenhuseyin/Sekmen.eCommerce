@@ -13,7 +13,7 @@ public class AssignRoleCommandHandler(
         var user = await context.ApplicationUsers.FirstOrDefaultAsync(m => m.NormalizedEmail == request.Email.ToUpperInvariant(), cancellationToken);
         if (user is null)
         {
-            return Result.Fail("User not found");
+            return Result.Fail<bool>("User not found");
         }
 
         var roleName = request.Role.ToUpperInvariant();
@@ -24,6 +24,6 @@ public class AssignRoleCommandHandler(
         }
 
         _ = await userManager.AddToRoleAsync(user, roleName);
-        return Result.Ok();
+        return Result.Ok(true);
     }
 }

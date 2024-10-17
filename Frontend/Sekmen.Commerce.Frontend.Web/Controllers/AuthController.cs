@@ -28,7 +28,7 @@ public class AuthController(
             return RedirectToAction(nameof(Index), HomeController.Name);
         }
 
-        ModelState.AddModelError("CustomError", result.Errors.First().Message);
+        ModelState.AddModelError("CustomError", result.Error);
         return View(command);
     }
 
@@ -53,7 +53,7 @@ public class AuthController(
             return RedirectToAction(nameof(Login));
         }
 
-        ModelState.AddModelError("CustomError", result.Errors.First().Message);
+        ModelState.AddModelError("CustomError", result.Error);
         ViewBag.RoleList = GenerateRoles();
 
         return View(command);
