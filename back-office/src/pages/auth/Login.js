@@ -1,30 +1,25 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Col, Form, Input, Button, Row, Card, message } from 'antd'
-import { jwtDecode } from 'jwt-decode'
 import AuthService from './AuthService'
 import LoginContainer from './LoginContainer'
 import { useLocalUser } from '../../hooks/useLocalUser'
-import UserService from '../users/UserService'
 
 const uathService = new AuthService()
-const userService = new UserService()
 
 export default function Login({ location }) {
   const navigate = useNavigate()
   const formState = location?.state
   const [formRef] = Form.useForm()
-  const [user, setUser] = useLocalUser()
+  const [, setUser] = useLocalUser()
   const [ready, setReady] = useState(true)
 
   async function otpSuccess(model) {
-    let jwt = jwtDecode(model.token)
-    message.success(`Welcome ${jwt.firstName}`)
+    message.success(`Welcome ${model.user.name}`)
     setUser({ access_token: model.token })
-    var result = await userService.me(user)
     await new Promise(resolve => setTimeout(resolve, 1000))
 
-    if (result.mustChangePassword) {
+    if (model.user.mustChangePassword) {
       navigate('/change-password')
     }
     else {
@@ -36,8 +31,8 @@ export default function Login({ location }) {
     uathService
       .login(model)
       .then((response) => {
-        if (response.status === 200 && response.data && response.data.token)
-          otpSuccess(response.data)
+        if (response.status === 200 && response.data && response.data.value)
+          otpSuccess(response.data.value)
         else
           message.error("Giriş başarısız oldu")
       })

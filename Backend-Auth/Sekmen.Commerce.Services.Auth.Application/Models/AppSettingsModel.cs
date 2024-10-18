@@ -3,6 +3,7 @@ namespace Sekmen.Commerce.Services.Auth.Application.Models;
 public class AppSettingsModel
 {
     public JwtOptions JwtOptions { get; init; } = new();
+    public string PasswordOptions { get; init; }
 }
 
 public class JwtOptions

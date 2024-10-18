@@ -3,18 +3,21 @@ namespace Sekmen.Commerce.Services.Auth.Api.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class AuthController(
-    ISender mediatr
+    ISender mediatr,
+    AppSettingsModel appSettings
 ) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterCommand command, CancellationToken cancellationToken)
+    [Consumes("application/x-www-form-urlencoded")]
+    public async Task<IActionResult> Register([FromForm] RegisterCommand command, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(command, cancellationToken);
         return Ok(result);
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginCommand command, CancellationToken cancellationToken)
+    [Consumes("application/x-www-form-urlencoded")]
+    public async Task<IActionResult> Login([FromForm] LoginCommand command, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(command, cancellationToken);
         return Ok(result);
@@ -25,5 +28,11 @@ public class AuthController(
     {
         var result = await mediatr.Send(command, cancellationToken);
         return Ok(result);
+    }
+
+    [HttpGet("password-policy")]
+    public IActionResult GetPasswordPolicy()
+    {
+        return Ok(appSettings.PasswordOptions);
     }
 }

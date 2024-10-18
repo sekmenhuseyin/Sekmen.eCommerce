@@ -17,8 +17,10 @@ if (app.Environment.IsDevelopment())
 
 app
     .UseHttpsRedirection()
+    .UseCors(app.Environment.EnvironmentName.ToLower())
     .UseAuthentication()
-    .UseAuthorization();
+    .UseAuthorization()
+    .UseHeaders();
 app.MapControllers();
 app.ApplyMigrations();
 

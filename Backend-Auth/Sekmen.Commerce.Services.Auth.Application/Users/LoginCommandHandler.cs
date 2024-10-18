@@ -1,6 +1,6 @@
 namespace Sekmen.Commerce.Services.Auth.Application.Users;
 
-public record LoginCommand(string UserName, string Password) : ICommand<Result<LoginResponseViewModel>>;
+public record LoginCommand(string Email, string Password) : ICommand<Result<LoginResponseViewModel>>;
 public record LoginResponseViewModel(UserDto User, string Token);
 
 internal sealed class LoginCommandHandler(
@@ -12,7 +12,7 @@ internal sealed class LoginCommandHandler(
 {
     public async Task<Result<LoginResponseViewModel>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var user = await context.ApplicationUsers.FirstOrDefaultAsync(m => m.NormalizedUserName == request.UserName.ToUpperInvariant(), cancellationToken);
+        var user = await context.ApplicationUsers.FirstOrDefaultAsync(m => m.NormalizedEmail == request.Email.ToUpperInvariant(), cancellationToken);
         if (user is null)
         {
             return Result.Fail<LoginResponseViewModel>("User not found");

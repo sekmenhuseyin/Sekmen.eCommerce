@@ -8,6 +8,7 @@ public static class WebApplicationExtensions
             .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
             .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
             .AddAutoMapper(typeof(ICommand))
+            .AddCors()
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))

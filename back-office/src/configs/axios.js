@@ -34,10 +34,9 @@ export const urlDeserializer = (queryString) => {
 
 const client = axios.create({
   baseURL: getServiceOrigin(),
-  timeout: 50000,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
-    "X-Office-Header": "office",
     Accept: "application/json"
   }
 });
