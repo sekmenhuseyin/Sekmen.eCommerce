@@ -1,6 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import BaseLayout from "./components/BaseLayout";
 import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./pages/Dashboard";
+import Page403 from "./pages/403";
+import Page404 from "./pages/404";
+import Users from "./pages/users/Users";
+import Login from "./pages/auth/Login";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 function App() {
   return (
@@ -11,13 +17,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route element={<BaseLayout />}>
             <Route exact path="/" element={<Dashboard />} />
-            <Route exact path="/change-password" element={<ChangePassword />} />
-
-            <Route exact path="/pages" element={<Pages />} />
-            <Route exact path="/pages/create" element={<PageEdit />} />
-            <Route exact path="/pages/edit/:id" element={<PageEdit />} />
-
-            <Route exact path="/settings" />
+            {/* <Route exact path="/coupons" element={<Coupons />} /> */}
             <Route exact path="/users" element={<Users />} />
 
             <Route exact path="/forbidden" element={<Page403 />} />
