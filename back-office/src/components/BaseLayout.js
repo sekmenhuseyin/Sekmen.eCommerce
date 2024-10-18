@@ -1,104 +1,69 @@
-import React from 'react';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Layout, Menu, Button, Breadcrumb, theme } from 'antd'
+import { useEffect, useState } from 'react'
+import { Link, useLocation, Outlet } from 'react-router-dom';
+import { Layout, Menu } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
+import Header from './Header'
+import Footer from './Footer'
 
-const { Header, Content, Sider } = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-    const key = String(index + 1);
-    return {
-        key: `sub${key}`,
-        icon: React.createElement(icon),
-        label: `subnav ${key}`,
-        children: new Array(4).fill(null).map((_, j) => {
-            const subKey = index * 4 + j + 1;
-            return {
-                key: subKey,
-                label: `option${subKey}`,
-            };
-        }),
-    };
-});
-const {
-    token: { colorBgContainer, borderRadiusLG },
-} = theme.useToken();
+const { Content, Sider } = Layout
 
 export default function BaseLayout() {
-    return (
+  const location = useLocation();
+  const [collapsed, setCollapsed] = useState(false)
+  const [selectedKey, setSelectedKey] = useState('1')
+  const [openKeys, setOpenKeys] = useState()
+
+  useEffect(() => {
+    const urlSearchParams = new URLSearchParams(location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    if (params.menu) {
+      setOpenKeys([params.menu]);
+    }
+    if (params.subMenu) {
+      setSelectedKey(params.subMenu);
+    }
+  }, [location])
+
+  function onOpenChange(keys) {
+    let rootSubmenuKeys = menuItems.map(m => m.key)
+    let latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  }
+
+  const menuItems = [
+    { label: <Link className='MenuLinks' to="/coupons">Kuponlar</Link>, icon: <UserOutlined />, key: 'coupons' },
+    { label: <Link className='MenuLinks' to="/users">Kullanıcılar</Link>, icon: <UserOutlined />, key: 'users' }
+  ]
+
+  return (
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider className='BaseLayout-Aside' collapsible collapsed={collapsed} onCollapse={setCollapsed}>
+          <div className='BaseLayout-LogoContainer'>
+            <Link className='MenuLinks' to="/">
+              Office
+            </Link>
+          </div>
+          <Menu
+            items={menuItems}
+            theme="dark"
+            selectedKeys={[selectedKey]}
+            openKeys={openKeys}
+            mode="inline"
+            onClick={({ key }) => setSelectedKey(key)}
+            onOpenChange={onOpenChange}
+          />
+        </Sider>
         <Layout>
-            <Header
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                }}
-            >
-                <div className="demo-logo" />
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    items={items1}
-                    style={{
-                        flex: 1,
-                        minWidth: 0,
-                    }}
-                />
-            </Header>
-            <Layout>
-                <Sider
-                    width={200}
-                    style={{
-                        background: colorBgContainer,
-                    }}
-                >
-                    <Menu
-                        mode="inline"
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
-                        style={{
-                            height: '100%',
-                            borderRight: 0,
-                        }}
-                        items={items2}
-                    />
-                </Sider>
-                <Layout
-                    style={{
-                        padding: '0 24px 24px',
-                    }}
-                >
-                    <Breadcrumb
-                        items={[
-                            {
-                                title: 'Home',
-                            },
-                            {
-                                title: 'List',
-                            },
-                            {
-                                title: 'App',
-                            },
-                        ]}
-                        style={{
-                            margin: '16px 0',
-                        }}
-                    />
-                    <Content
-                        style={{
-                            padding: 24,
-                            margin: 0,
-                            minHeight: 280,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG,
-                        }}
-                    >
-                        Content
-                    </Content>
-                </Layout>
-            </Layout>
+          <Header />
+          <Content>
+            <Outlet />
+          </Content>
+          <Footer />
         </Layout>
-    )
+      </Layout>
+  )
 }
