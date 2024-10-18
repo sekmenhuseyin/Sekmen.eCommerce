@@ -65,7 +65,7 @@ export default function Users() {
       <Table
         rowKey="id"
         scroll={{ x: 1000 }}
-        dataSource={data?.result}
+        dataSource={data}
         columns={userColumns(edit, remove)}
         onRow={(record, _) => {
           return {

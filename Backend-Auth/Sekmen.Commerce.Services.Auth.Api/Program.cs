@@ -3,7 +3,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
-    .AddAuthorization()
     .AddControllers();
 builder.AddInternalDependencies();
 

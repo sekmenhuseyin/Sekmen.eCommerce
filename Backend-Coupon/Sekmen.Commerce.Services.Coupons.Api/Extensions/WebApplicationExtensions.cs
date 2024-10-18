@@ -4,16 +4,47 @@ public static class WebApplicationExtensions
 {
     internal static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
-        var secret = builder.Configuration.GetValue<string>("JwtOptions:Secret")!;
-        var issuer = builder.Configuration.GetValue<string>("JwtOptions:Issuer")!;
-        var audience = builder.Configuration.GetValue<string>("JwtOptions:Audience")!;
-        var key = Encoding.ASCII.GetBytes(secret);
+        builder.AddInternalAuthentication();
         _ = builder.Services
             .AddAutoMapper(typeof(ICommand))
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<CouponDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             )
+            .AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition(name: JwtBearerDefaults.AuthenticationScheme, securityScheme: new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Enter the Bearer Auth string: `Bearer jwt-generated-token`",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = JwtBearerDefaults.AuthenticationScheme
+                            }
+                        },
+                        []
+                    }
+                });
+            });
+    }
+
+    private static void AddInternalAuthentication(this WebApplicationBuilder builder)
+    {
+        var secret = builder.Configuration.GetValue<string>("JwtOptions:Secret")!;
+        var issuer = builder.Configuration.GetValue<string>("JwtOptions:Issuer")!;
+        var audience = builder.Configuration.GetValue<string>("JwtOptions:Audience")!;
+        var key = Encoding.ASCII.GetBytes(secret);
+        _ = builder.Services
             .AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
