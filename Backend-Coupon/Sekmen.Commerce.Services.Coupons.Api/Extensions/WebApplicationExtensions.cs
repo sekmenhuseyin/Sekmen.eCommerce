@@ -11,6 +11,7 @@ public static class WebApplicationExtensions
             .AddDbContext<CouponDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             )
+            .AddCors()
             .AddSwaggerGen(options =>
             {
                 options.AddSecurityDefinition(name: JwtBearerDefaults.AuthenticationScheme, securityScheme: new OpenApiSecurityScheme

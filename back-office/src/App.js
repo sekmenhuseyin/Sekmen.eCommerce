@@ -7,6 +7,7 @@ import Page404 from "./pages/404";
 import Users from "./pages/users/Users";
 import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import Coupons from "./pages/coupons/Coupons";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route element={<BaseLayout />}>
             <Route exact path="/" element={<Dashboard />} />
-            {/* <Route exact path="/coupons" element={<Coupons />} /> */}
+            <Route exact path="/coupons" element={<Coupons />} />
             <Route exact path="/users" element={<Users />} />
 
             <Route exact path="/forbidden" element={<Page403 />} />

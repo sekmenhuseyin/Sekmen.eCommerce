@@ -1,25 +1,39 @@
 // ReSharper disable UnusedType.Global
 namespace Sekmen.Commerce.Services.Coupons.Application.Coupons;
 
-public record GetAllCouponQuery : IQuery<Result<CouponDto[]>>;
+public record GetAllCouponQuery : IPagedQuery<IPagedQueryResult<IEnumerable<CouponDto>>>
+{
+    public int PageIndex { get; init; } = 1;
+    public int PageSize { get; init; } = 10;
+    public string OrderBy { get; init; } = "code_asc";
+    public string Search { get; init; } = string.Empty;
+}
 public record GetByIdCouponQuery(int Id) : IQuery<Result<CouponDto>>;
 public record GetByCodeCouponQuery(string Code) : IQuery<Result<CouponDto>>;
 
 internal sealed class GetCouponQueryHandler(
     CouponDbContext context,
     IMapper mapper
-) : IQueryHandler<GetAllCouponQuery, Result<CouponDto[]>>, 
+) : IQueryHandler<GetAllCouponQuery, IPagedQueryResult<IEnumerable<CouponDto>>>, 
     IQueryHandler<GetByIdCouponQuery, Result<CouponDto>>, 
     IQueryHandler<GetByCodeCouponQuery, Result<CouponDto>>
 {
-    public Task<Result<CouponDto[]>> Handle(GetAllCouponQuery request, CancellationToken cancellationToken)
+    public async Task<IPagedQueryResult<IEnumerable<CouponDto>>> Handle(GetAllCouponQuery request, CancellationToken cancellationToken)
     {
-        var coupons = context.Coupons
+        var query = await context.Coupons
+            .Filter(x => x.Code.Contains(request.Search), request.Search)
+            .Sort(x => x.Code, request.OrderBy)
+            .Sort(x => x.Id, request.OrderBy)
+            .AsNoTracking()
+            .ToArrayAsync(cancellationToken: cancellationToken);
+
+        var result = query
+            .GetPaged(request)
             .AsEnumerable()
             .Select(mapper.Map<CouponDto>)
             .ToArray();
 
-        return Task.FromResult(Result.Ok(coupons));
+        return result.ToPagedQueryResult(request, query.Length);
     }
 
     public async Task<Result<CouponDto>> Handle(GetByIdCouponQuery request, CancellationToken cancellationToken)
