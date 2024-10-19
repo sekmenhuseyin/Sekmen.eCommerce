@@ -1,3 +1,4 @@
+// ReSharper disable InvertIf
 namespace Sekmen.Commerce.Services.Auth.Api.Extensions;
 
 public static class WebApplicationExtensions
@@ -5,10 +6,12 @@ public static class WebApplicationExtensions
     internal static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
         builder.AddInternalAuthentication();
+        builder.AddIdentity();
         _ = builder.Services
             .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
             .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
             .AddAutoMapper(typeof(ICommand))
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddCors()
             .AddSwaggerGen(options =>
             {
@@ -18,7 +21,7 @@ public static class WebApplicationExtensions
                     Description = "Enter the Bearer Auth string: `Bearer jwt-generated-token`",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
                 });
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -35,11 +38,29 @@ public static class WebApplicationExtensions
                     }
                 });
             })
-            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-            )
-            .AddIdentity<ApplicationUser, IdentityRole>()
+            );
+    }
+
+    private static void AddIdentity(this WebApplicationBuilder builder)
+    {
+        var passwordOptions = builder.Configuration.GetRequiredSection("PasswordOptions").Get<PasswordOptionsModel>();
+        _ = builder.Services
+            .AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                if (passwordOptions is not null)
+                {
+                    options.Password.RequireDigit = passwordOptions.RequireDigit;
+                    options.Password.RequiredLength = passwordOptions.RequiredLength;
+                    options.Password.RequireLowercase = passwordOptions.RequireLowercase;
+                    options.Password.RequireUppercase = passwordOptions.RequireUppercase;
+                    options.Password.RequiredUniqueChars = passwordOptions.RequiredUniqueChars;
+                    options.Password.RequireNonAlphanumeric = passwordOptions.RequireNonAlphanumeric;
+                    options.Lockout.MaxFailedAccessAttempts = passwordOptions.MaxFailedAttempts;
+                }
+            })
             .AddEntityFrameworkStores<AuthDbContext>()
             .AddDefaultTokenProviders();
     }
@@ -55,19 +76,43 @@ public static class WebApplicationExtensions
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.IncludeErrorDetails = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateLifetime = true,
                     ValidateIssuer = true,
-                    ValidIssuer = issuer,
                     ValidateAudience = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidIssuer = issuer,
                     ValidAudience = audience
                 };
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        var userId = context.Principal?.Claims.GetUserId();
+                        if (string.IsNullOrWhiteSpace(userId))
+                            context.Fail("Unauthorized");
+
+                        return Task.CompletedTask;
+                    }
+                };
             });
-        _ = builder.Services.AddAuthorization();
+        _ = builder.Services.AddAuthorization(options =>
+        {
+            options.FallbackPolicy = options.DefaultPolicy;
+            options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser()
+                .Build();
+        });
     }
 
     internal static void ApplyMigrations(this WebApplication app)

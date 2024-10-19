@@ -1,16 +1,16 @@
 namespace Sekmen.Commerce.Services.Auth.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/users")]
 [ApiController]
-// [Authorize]
+[Authorize]
 public class UsersController(
     IMediator mediator
 ) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll()
     {
-        return Ok(await mediator.Send(new GetUsersQuery(), cancellationToken));
+        return Ok(await mediator.Send(new GetUsersQuery()));
     }
     
     [HttpDelete]

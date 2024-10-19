@@ -1,6 +1,6 @@
 namespace Sekmen.Commerce.Services.Auth.Application.Users;
 
-public record UpdatePasswordCommand(int Id, int UserId) : ICommand<bool>;
+public record UpdatePasswordCommand(int Id, string? UserId) : ICommand<bool>;
 
 internal sealed class UpdatePasswordCommandHandler : ICommandHandler<UpdatePasswordCommand, bool>
 {

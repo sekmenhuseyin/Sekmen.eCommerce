@@ -1,7 +1,8 @@
 namespace Sekmen.Commerce.Services.Auth.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/auth")]
 [ApiController]
+[AllowAnonymous]
 public class AuthController(
     ISender mediatr,
     AppSettingsModel appSettings
