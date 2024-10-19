@@ -1,4 +1,4 @@
-import client from '../../configs/axios'
+import client from "../../configs/axiosAuth"
 const DEFAULT_QUERY = '/users'
 
 export default class UserService {

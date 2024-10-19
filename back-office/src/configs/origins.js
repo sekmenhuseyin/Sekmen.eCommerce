@@ -1,11 +1,11 @@
 export const getOrigin = () => window.location.origin
 
-export const getWebsite = () => {
-  return process.env.REACT_APP_API;
+export const getAuthOrigin = () => {
+  return `${process.env.REACT_APP_AUTHAPI}/api`
 }
 
-export const getServiceOrigin = () => {
-  return `${process.env.REACT_APP_API}/api`
+export const getCouponOrigin = () => {
+  return `${process.env.REACT_APP_COUPONAPI}/api`
 }
 
 export const getEnvironmentName = () => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getServiceOrigin } from "./origins";
+import { getCouponOrigin } from "./origins";
 
 const redirectToLogin = () => (window.location.href = "/login");
 const redirectToForbidden = () => (window.location.href = "/forbidden");
@@ -33,7 +33,7 @@ export const urlDeserializer = (queryString) => {
 }
 
 const client = axios.create({
-  baseURL: getServiceOrigin(),
+  baseURL: getCouponOrigin(),
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
