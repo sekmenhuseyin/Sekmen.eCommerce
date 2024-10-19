@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Drawer, message, Table } from 'antd'
+import { Button, Col, Drawer, Input, message, Row, Table } from 'antd'
 import { PlusOutlined, UserOutlined } from '@ant-design/icons'
 import Page from '../../components/Page'
 import userColumns from './user-columns'
 import UserService from './UserService'
 import UserEdit from './UserEdit'
+import AuthService from '../auth/AuthService'
 
 const userService = new UserService()
+const authService = new AuthService()
+const { Search } = Input
 
 export default function Users() {
+  const [filter, setFilter] = useState({ orderBy: 'id_asc' })
   const [ready, setReady] = useState(false)
   const [data, setData] = useState()
   const [current, setCurrent] = useState()
@@ -16,15 +20,19 @@ export default function Users() {
   const [passwordPolicy, setPasswordPolicy] = useState()
 
   useEffect(() => {
-    userService.getPasswordPolicy().then((x) => {
+    authService.getPasswordPolicy().then((x) => {
       setPasswordPolicy(x.data)
     }).catch(() => { })
-    load()
   }, [])
+
+  useEffect(() => {
+      load()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter])
 
   function load() {
     setReady(false)
-    userService.getAll()
+    userService.getAll(filter)
       .then(m => setData(m.data))
       .catch(() => { message.error("Unexpected error") })
       .finally(() => { setReady(true) })
@@ -62,10 +70,24 @@ export default function Users() {
         </Button>
       ]}
     >
+    <Row gutter={16}>
+      <Col>
+        <Search
+          className="ensearch"
+          size="large"
+          disabled={!ready}
+          allowClear
+          enterButton
+          onSearch={val => setFilter({ ...filter, pageIndex: 1, search: val === "" ? null : val })}
+          key="search"
+          placeholder="Search"
+        />
+      </Col>
+    </Row>
       <Table
         rowKey="id"
         scroll={{ x: 1000 }}
-        dataSource={data}
+        dataSource={data?.result}
         columns={userColumns(edit, remove)}
         onRow={(record, _) => {
           return {
@@ -73,7 +95,18 @@ export default function Users() {
           }
         }}
         loading={!ready}
-        pagination={null}
+        pagination={{
+          pageSize: filter.pageSize,
+          total: data?.rowCount,
+          showTotal: (total, _) => `Toplam ${total} kayıt var`,
+          current: filter.pageIndex,
+          position: ['bottomCenter'],
+          showSizeChanger: true
+        }}
+        onChange={(f, _, s) => s.order !== undefined
+          ? setFilter((p) => ({ ...p, pageIndex: f.current, pageSize: f.pageSize, orderBy: `${s.columnKey}_${s.order}` }))
+          : setFilter((p) => ({ ...p, pageIndex: f.current, pageSize: f.pageSize, orderBy: filter.orderBy })
+        )}
       />
       <Drawer
         open={drawerVisibility}

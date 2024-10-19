@@ -9,4 +9,5 @@ export default class AuthService {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
   })
   forgotPassword = (model) => client.post(`${DEFAULT_QUERY}/forgot-password`, model)
+  getPasswordPolicy = () => client.get(`${DEFAULT_QUERY}/password-policy`)
 }

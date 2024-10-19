@@ -1,4 +1,5 @@
 global using System.Collections;
+global using System.Linq.Expressions;
 global using AutoMapper;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;
