@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Row, Col, Input, Button, message, Switch, Select, Card, Spin } from 'antd'
+import { Form, Row, Col, Input, message, Switch, Card, Spin, Button } from 'antd'
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons'
-import UserService from './UserService'
-import { Password } from '../../components/Password'
-import AuthService from '../auth/AuthService'
+import CouponService from './CouponService'
 
-const userService = new UserService()
-const authService = new AuthService()
-const { Option } = Select
+const couponService = new CouponService()
 
-export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
+export default function CouponEdit({ onSuccess, model }) {
   const [formRef] = Form.useForm()
   const [ready, setReady] = useState(true)
-  const [roles, setRoles] = useState([])
 
   useEffect(() => {
     formRef.resetFields()
-    authService.getRoles().then((x) => setRoles(x.data.value)).catch(() => { })
   }, [formRef])
 
   const submit = async (values) => {
     let _model = { ...values, id: model?.id }
     setReady(false)
-    userService.addOrUpdate(_model)
+    couponService.addOrUpdate(_model)
       .then(() => {
-        message.success('User is saved')
+        message.success('Coupon is saved')
         onSuccess()
       }).catch(err => {
         message.error(err.response?.data?.error ?? 'Unexpected error')
@@ -46,55 +40,38 @@ export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item
-              label="Name"
-              name="name"
+              label="Code"
+              name="code"
               rules={[
-                { required: true, message: 'Please enter name' },
+                { required: true, message: 'Please enter code' },
                 { min: 2, message: 'Too short' },
               ]}
               hasFeedback
             >
-              <Input placeholder="Name" />
+              <Input placeholder="Code" />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item
-              label="Email"
-              name="email"
+              label="Discount (%)"
+              name="discountAmount"
               rules={[
-                { required: true, message: 'Please enter email' },
-                { type: 'email', message: 'Invalid email' }
+                { required: true, message: 'Please enter discount amount' }
               ]}
               hasFeedback
             >
-              <Input type="email" placeholder="Email" />
+              <Input type='number' placeholder="Discount" />
             </Form.Item>
           </Col>
           <Col span={24}>
-
             <Form.Item
-              label="Phone"
-              name="phoneNumber"
-              rules={[{ required: true, message: 'Please enter phone number' }]}
+              label="Min Amount ($)"
+              name="minAmount"
+              rules={[{ required: true, message: 'Please enter min amount' }]}
               hasFeedback
             >
-              <Input placeholder="Phone" />
+              <Input type='number' placeholder="Min Amount" />
             </Form.Item>
-          </Col>
-        </Row>
-        {!model && <Password passwordPolicy={passwordPolicy} formRef={formRef} />}
-        <Row gutter={16}>
-          <Col span={24}>
-            <Form.Item
-              label="Role"
-              name="role"
-              rules={[{ required: true, message: 'Select role' }]}
-            >
-              <Select allowClear>
-                {roles.map((item) => <Option key={item.id} value={item.id}>{item.name}</Option>)}
-              </Select>
-            </Form.Item>
-          </Col>
           <Col span={24}>
             <Button
               type="primary"
@@ -105,6 +82,7 @@ export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
             >
               Save
             </Button>
+          </Col>
           </Col>
         </Row>
       </Form>

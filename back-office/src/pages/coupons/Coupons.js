@@ -4,6 +4,7 @@ import { PlusOutlined, UserOutlined } from '@ant-design/icons'
 import Page from '../../components/Page'
 import couponColumns from './coupon-columns'
 import CouponService from './CouponService'
+import CouponEdit from './CouponEdit'
 
 const couponService = new CouponService()
 const { Search } = Input
@@ -105,7 +106,7 @@ export default function Coupons() {
         styles={{ body: { paddingTop: 20 } }}
         title={current ? 'Edit Coupon' : 'Add Coupon'}
       >
-        {/* <CouponsEdit onSuccess={success} model={current} /> */}
+        <CouponEdit onSuccess={success} model={current} />
       </Drawer>
     </Page>
   )

@@ -10,4 +10,5 @@ export default class AuthService {
   })
   forgotPassword = (model) => client.post(`${DEFAULT_QUERY}/forgot-password`, model)
   getPasswordPolicy = () => client.get(`${DEFAULT_QUERY}/password-policy`)
+  getRoles = () => client.get(`${DEFAULT_QUERY}/roles`)
 }

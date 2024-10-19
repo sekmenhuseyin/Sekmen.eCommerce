@@ -44,7 +44,11 @@ export default function BaseLayout() {
         <Sider className='BaseLayout-Aside' collapsible collapsed={collapsed} onCollapse={setCollapsed}>
           <div className='BaseLayout-LogoContainer'>
             <Link className='MenuLinks' to="/">
-              Office
+            <img
+                src="https://sekmen.dev/media/3fsljqe1/office-logo.png"
+                alt="Logo"
+                height={40}
+              />
             </Link>
           </div>
           <Menu
