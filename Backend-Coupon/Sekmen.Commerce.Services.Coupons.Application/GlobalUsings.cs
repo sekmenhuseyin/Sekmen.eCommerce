@@ -1,3 +1,4 @@
+global using System.Collections;
 global using AutoMapper;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;

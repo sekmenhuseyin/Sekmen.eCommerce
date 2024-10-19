@@ -1,9 +1,9 @@
 namespace Sekmen.Commerce.Services.Coupons.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/coupons")]
 [ApiController]
 [Authorize]
-public class CouponController(
+public class CouponsController(
     ISender mediatr
 ) : ControllerBase
 {
