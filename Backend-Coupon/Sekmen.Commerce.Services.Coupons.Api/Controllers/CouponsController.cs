@@ -8,9 +8,9 @@ public class CouponsController(
 ) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll([FromQuery] GetAllCouponQuery query, CancellationToken cancellationToken)
     {
-        var coupons = await mediatr.Send(new GetAllCouponQuery(), cancellationToken); 
+        var coupons = await mediatr.Send(query, cancellationToken); 
         return Ok(coupons);
     }
 

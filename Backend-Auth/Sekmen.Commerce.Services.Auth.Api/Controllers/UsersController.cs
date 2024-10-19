@@ -8,9 +8,9 @@ public class UsersController(
 ) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll([FromQuery] GetUsersQuery query, CancellationToken cancellationToken)
     {
-        return Ok(await mediatr.Send(new GetUsersQuery(), cancellationToken));
+        return Ok(await mediatr.Send(query, cancellationToken));
     }
     
     [HttpDelete]
