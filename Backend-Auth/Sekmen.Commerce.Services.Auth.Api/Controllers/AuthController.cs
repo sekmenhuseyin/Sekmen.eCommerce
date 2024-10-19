@@ -36,4 +36,11 @@ public class AuthController(
     {
         return Ok(appSettings.PasswordOptions);
     }
+    
+    [HttpGet("roles")]
+    public async Task<IActionResult> GetRoles(GetRolesQuery  command, CancellationToken cancellationToken)
+    {
+        var result = await mediatr.Send(command, cancellationToken);
+        return Ok(result);
+    }
 }

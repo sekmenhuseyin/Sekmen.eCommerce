@@ -25,12 +25,6 @@ public class UsersController(
         return Ok(await mediator.Send(request));
     }
     
-    // [HttpGet("roles")]
-    // public IActionResult GetRoles()
-    // {
-    //     return Ok(roleQuery.GetRoles());
-    // }
-    
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateUserCommand request)
     {
