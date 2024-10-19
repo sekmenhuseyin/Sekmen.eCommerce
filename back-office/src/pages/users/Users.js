@@ -98,7 +98,7 @@ export default function Users() {
         pagination={{
           pageSize: filter.pageSize,
           total: data?.rowCount,
-          showTotal: (total, _) => `Toplam ${total} kayıt var`,
+          showTotal: (total, _) => `Total of ${total} records`,
           current: filter.pageIndex,
           position: ['bottomCenter'],
           showSizeChanger: true
