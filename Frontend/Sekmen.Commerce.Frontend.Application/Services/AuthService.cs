@@ -4,7 +4,6 @@ public interface IAuthService
 {
     Task<Result<LoginResponseViewModel?>> LoginAsync(LoginCommand command);
     Task<Result<object?>> RegisterAsync(RegisterCommand command);
-    Task<Result<object?>> AssignRoleAsync(AssignRoleCommand command);
 }
 
 public sealed class AuthService(
@@ -35,14 +34,5 @@ public sealed class AuthService(
             HttpMethod = HttpMethod.Post,
             Data = command
         }, false);
-    }
-
-    public async Task<Result<object?>> AssignRoleAsync(AssignRoleCommand command)
-    {
-        return await SendAsync(new RequestDto(_baseUrl + "assign-role")
-        {
-            HttpMethod = HttpMethod.Post,
-            Data = command
-        });
     }
 }

@@ -45,13 +45,7 @@ public class AuthController(
     {
         var result = await authService.RegisterAsync(command);
         if (result.IsSuccess)
-        {
-            var assignRoleCommand = new AssignRoleCommand(command.Email,
-                string.IsNullOrWhiteSpace(command.Role) ? AuthConstants.RoleCustomer : command.Role);
-            _ = await authService.AssignRoleAsync(assignRoleCommand);
-
             return RedirectToAction(nameof(Login));
-        }
 
         ModelState.AddModelError("CustomError", result.Error);
         ViewBag.RoleList = GenerateRoles();

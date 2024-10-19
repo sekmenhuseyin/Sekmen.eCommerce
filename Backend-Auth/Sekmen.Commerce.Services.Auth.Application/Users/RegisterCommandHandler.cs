@@ -1,9 +1,10 @@
 namespace Sekmen.Commerce.Services.Auth.Application.Users;
 
-public record RegisterCommand(string Email, string Name, string PhoneNumber, string Password) : ICommand<Result<bool>>;
+public record RegisterCommand(string Email, string Name, string PhoneNumber, string Password, string Role) : ICommand<Result<bool>>;
 
 internal sealed class RegisterCommandHandler(
-    UserManager<ApplicationUser> userManager
+    UserManager<ApplicationUser> userManager,
+    RoleManager<IdentityRole> roleManager
 ) : ICommandHandler<RegisterCommand, Result<bool>>
 {
     public async Task<Result<bool>> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -19,8 +20,14 @@ internal sealed class RegisterCommandHandler(
         };
 
         var result = await userManager.CreateAsync(user, request.Password);
-        return result.Succeeded
-            ? Result.Ok(true)
-            : Result.Fail<bool>(result.Errors.First().Description);
+        if (!result.Succeeded)
+            return Result.Fail<bool>(result.Errors.First().Description);
+
+        var roleName = request.Role.ToUpperInvariant();
+        var isExists = await roleManager.RoleExistsAsync(roleName);
+        if (!isExists) _ = await roleManager.CreateAsync(new IdentityRole(roleName));
+        _ = await userManager.AddToRoleAsync(user, roleName);
+
+        return Result.Ok(true);
     }
 }

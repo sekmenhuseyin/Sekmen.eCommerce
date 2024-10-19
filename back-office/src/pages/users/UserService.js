@@ -6,5 +6,5 @@ export default class UserService {
   addOrUpdate = model => model.id > 0 ? client.put(`${DEFAULT_QUERY}/`, model) : client.post(`${DEFAULT_QUERY}/`, model)
   delete = model => client.delete(`${DEFAULT_QUERY}/`, model)
   updatePassword = (model) => client.put(`${DEFAULT_QUERY}/password`, model)
-  detail = (userId) => client.get(`${DEFAULT_QUERY}/${userId}/detail`)
+  getRole = (userId) => client.get(`${DEFAULT_QUERY}/role/${userId}`)
 }

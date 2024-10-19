@@ -28,7 +28,7 @@ export default function CouponEdit({ onSuccess, model }) {
   return (
     <Card>
       <Spin size="large" spinning={!ready} />
-      <Form form={formRef} layout="vertical" onFinish={submit} hidden={!ready} size="large">
+      <Form form={formRef} initialValues={model} layout="vertical" onFinish={submit} hidden={!ready} size="large">
         {model !== null && <Form.Item
           className='IsActiveSwitch IsActiveSwitch-fixed'
           name="isActive"

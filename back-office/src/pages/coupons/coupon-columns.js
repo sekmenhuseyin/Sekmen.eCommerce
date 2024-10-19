@@ -5,7 +5,6 @@ export default function couponColumns(edit, remove) {
   return [
     {
       title: 'Id',
-      width: 120,
       dataIndex: 'id',
     },
     {
@@ -23,7 +22,6 @@ export default function couponColumns(edit, remove) {
     {
       title: '',
       align: 'center',
-      width: 110,
       fixed: 'right',
       render: (_, row) => (
         <>

@@ -8,14 +8,6 @@ public class AuthController(
     AppSettingsModel appSettings
 ) : ControllerBase
 {
-    [HttpPost("register")]
-    [Consumes("application/x-www-form-urlencoded")]
-    public async Task<IActionResult> Register([FromForm] RegisterCommand command, CancellationToken cancellationToken)
-    {
-        var result = await mediatr.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
     [HttpPost("login")]
     [Consumes("application/x-www-form-urlencoded")]
     public async Task<IActionResult> Login([FromForm] LoginCommand command, CancellationToken cancellationToken)
@@ -24,13 +16,13 @@ public class AuthController(
         return Ok(result);
     }
 
-    [HttpPost("assign-role")]
-    public async Task<IActionResult> AssignRole([FromBody] AssignRoleCommand command, CancellationToken cancellationToken)
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterCommand command, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(command, cancellationToken);
         return Ok(result);
     }
-
+    
     [HttpGet("password-policy")]
     public IActionResult GetPasswordPolicy()
     {
@@ -38,9 +30,9 @@ public class AuthController(
     }
     
     [HttpGet("roles")]
-    public async Task<IActionResult> GetRoles(GetRolesQuery  command, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetRoles(CancellationToken cancellationToken)
     {
-        var result = await mediatr.Send(command, cancellationToken);
+        var result = await mediatr.Send(new GetRolesQuery(), cancellationToken);
         return Ok(result);
     }
 }

@@ -18,16 +18,16 @@ export default function Users() {
   const [current, setCurrent] = useState()
   const [drawerVisibility, setDrawerVisibility] = useState(false)
   const [passwordPolicy, setPasswordPolicy] = useState()
+  const [roles, setRoles] = useState([])
 
   useEffect(() => {
-    authService.getPasswordPolicy().then((x) => {
-      setPasswordPolicy(x.data)
-    }).catch(() => { })
+    authService.getPasswordPolicy().then((x) => { setPasswordPolicy(x.data) }).catch(() => { })
+    authService.getRoles().then((x) => setRoles(x.data.value)).catch(() => { })
   }, [])
 
   useEffect(() => {
-      load()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
 
   function load() {
@@ -70,20 +70,20 @@ export default function Users() {
         </Button>
       ]}
     >
-    <Row gutter={16}>
-      <Col>
-        <Search
-          className="ensearch"
-          size="large"
-          disabled={!ready}
-          allowClear
-          enterButton
-          onSearch={val => setFilter({ ...filter, pageIndex: 1, search: val === "" ? null : val })}
-          key="search"
-          placeholder="Search"
-        />
-      </Col>
-    </Row>
+      <Row gutter={16}>
+        <Col>
+          <Search
+            className="ensearch"
+            size="large"
+            disabled={!ready}
+            allowClear
+            enterButton
+            onSearch={val => setFilter({ ...filter, pageIndex: 1, search: val === "" ? null : val })}
+            key="search"
+            placeholder="Search"
+          />
+        </Col>
+      </Row>
       <Table
         rowKey="id"
         scroll={{ x: 1000 }}
@@ -106,7 +106,7 @@ export default function Users() {
         onChange={(f, _, s) => s.order !== undefined
           ? setFilter((p) => ({ ...p, pageIndex: f.current, pageSize: f.pageSize, orderBy: `${s.columnKey}_${s.order}` }))
           : setFilter((p) => ({ ...p, pageIndex: f.current, pageSize: f.pageSize, orderBy: filter.orderBy })
-        )}
+          )}
       />
       <Drawer
         open={drawerVisibility}
@@ -115,7 +115,7 @@ export default function Users() {
         styles={{ body: { paddingTop: 20 } }}
         title={current ? 'Edit User' : 'Add User'}
       >
-        <UserEdit onSuccess={success} model={current} passwordPolicy={passwordPolicy} />
+        <UserEdit onSuccess={success} model={current} roles={roles} passwordPolicy={passwordPolicy} />
       </Drawer>
     </Page>
   )

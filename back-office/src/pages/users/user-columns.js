@@ -5,7 +5,6 @@ export default function userColumns(edit, remove) {
   return [
     {
       title: 'Name',
-      width: 120,
       dataIndex: 'name',
     },
     {
@@ -19,7 +18,6 @@ export default function userColumns(edit, remove) {
     {
       title: '',
       align: 'center',
-      width: 110,
       fixed: 'right',
       render: (_, row) => (
         <>

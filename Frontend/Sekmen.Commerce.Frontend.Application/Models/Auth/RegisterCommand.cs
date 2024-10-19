@@ -6,5 +6,5 @@ public record RegisterCommand
     [Required] public string Name { get; init; }
     [Required] public string PhoneNumber { get; init; }
     [Required] public string Password { get; init; }
-    public string? Role { get; init; }
+    [Required] public string Role { get; init; }
 }

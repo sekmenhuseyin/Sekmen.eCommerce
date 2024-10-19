@@ -3,21 +3,19 @@ import { Form, Row, Col, Input, Button, message, Switch, Select, Card, Spin } fr
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons'
 import UserService from './UserService'
 import { Password } from '../../components/Password'
-import AuthService from '../auth/AuthService'
 
 const userService = new UserService()
-const authService = new AuthService()
 const { Option } = Select
 
-export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
+export default function UserEdit({ onSuccess, roles, model, passwordPolicy = {} }) {
   const [formRef] = Form.useForm()
   const [ready, setReady] = useState(true)
-  const [roles, setRoles] = useState([])
 
   useEffect(() => {
     formRef.resetFields()
-    authService.getRoles().then((x) => setRoles(x.data.value)).catch(() => { })
-  }, [formRef])
+    if (model)
+      userService.getRole(model.id).then((x) => formRef.setFieldValue("role", x.data.value)).catch(() => { })
+  }, [formRef, model])
 
   const submit = async (values) => {
     let _model = { ...values, id: model?.id }
@@ -34,7 +32,7 @@ export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
   return (
     <Card>
       <Spin size="large" spinning={!ready} />
-      <Form form={formRef} layout="vertical" onFinish={submit} hidden={!ready} size="large">
+      <Form form={formRef} initialValues={model} layout="vertical" onFinish={submit} hidden={!ready} size="large">
         {model !== null && <Form.Item
           className='IsActiveSwitch IsActiveSwitch-fixed'
           name="isActive"
@@ -44,7 +42,7 @@ export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
           <Switch checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} />
         </Form.Item>}
         <Row gutter={16}>
-          <Col span={12}>
+          <Col span={24}>
             <Form.Item
               label="Name"
               name="name"
@@ -67,7 +65,7 @@ export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
               ]}
               hasFeedback
             >
-              <Input type="email" placeholder="Email" />
+              <Input type="email" placeholder="Email" disabled={model} />
             </Form.Item>
           </Col>
           <Col span={24}>
@@ -91,7 +89,7 @@ export default function UserEdit({ onSuccess, model, passwordPolicy = {} }) {
               rules={[{ required: true, message: 'Select role' }]}
             >
               <Select allowClear>
-                {roles.map((item) => <Option key={item.id} value={item.id}>{item.name}</Option>)}
+                {roles.map((item) => <Option key={item} value={item}>{item}</Option>)}
               </Select>
             </Form.Item>
           </Col>
