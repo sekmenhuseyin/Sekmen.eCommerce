@@ -1,5 +1,5 @@
 import client from "../../configs/axiosProduct"
-const DEFAULT_QUERY = '/coupons'
+const DEFAULT_QUERY = '/products'
 
 export default class UserService {
   getAll = (params) => client.get(`${DEFAULT_QUERY}/`, { params })
