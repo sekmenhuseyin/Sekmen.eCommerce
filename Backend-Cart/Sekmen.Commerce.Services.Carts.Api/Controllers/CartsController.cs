@@ -7,9 +7,9 @@ public class CartsController(
 ) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateOrUpdate([FromBody] ShoppingCartDto cartDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateOrUpdate([FromBody] CreateOrUpdateCartCommand request, CancellationToken cancellationToken)
     {
-        var result = await mediatr.Send(new CreateOrUpdateCartCommand(cartDto), cancellationToken);
+        var result = await mediatr.Send(request, cancellationToken);
         return Ok(result);
     }
 }
