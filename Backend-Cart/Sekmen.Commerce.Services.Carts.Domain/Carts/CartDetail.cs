@@ -1,5 +1,6 @@
 namespace Sekmen.Commerce.Services.Carts.Domain.Carts;
 
+[Index(nameof(CartId))]
 public class CartDetail
 {
     [Key] public int Id { get; protected init; }

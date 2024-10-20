@@ -21,7 +21,7 @@ namespace Sekmen.Commerce.Services.Coupons.Infrastructure
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Sekmen.Commerce.Services.CouponApi.Domain.Coupon", b =>
+            modelBuilder.Entity("Sekmen.Commerce.Services.Coupons.Domain.Coupons.Coupon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,7 +31,7 @@ namespace Sekmen.Commerce.Services.Coupons.Infrastructure
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("DiscountAmount")
                         .HasColumnType("float");
@@ -40,6 +40,8 @@ namespace Sekmen.Commerce.Services.Coupons.Infrastructure
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code");
 
                     b.ToTable("Coupons");
                 });

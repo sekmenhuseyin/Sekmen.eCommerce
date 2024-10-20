@@ -1,5 +1,6 @@
 namespace Sekmen.Commerce.Services.Coupons.Domain.Coupons;
 
+[Index(nameof(Code))]
 public class Coupon
 {
     [Key] public int Id { get; protected init; }
