@@ -7,7 +7,6 @@ public class CartDetail
     [Required] public Cart Cart { get; protected init; }
     [Required] public int ProductId { get; protected init; }
     [Required] public int Count { get; protected set; }
-    [NotMapped] public ProductDto Product { get; set; }
 
     protected CartDetail()
     {

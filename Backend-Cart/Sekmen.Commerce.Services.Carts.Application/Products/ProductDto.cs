@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.Carts.Domain.Products;
+namespace Sekmen.Commerce.Services.Carts.Application.Products;
 
 public record ProductDto(
     int Id,

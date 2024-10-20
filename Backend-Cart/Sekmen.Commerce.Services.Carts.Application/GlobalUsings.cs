@@ -8,4 +8,5 @@ global using Sekmen.Commerce.Services.Carts.Application.Models;
 global using Sekmen.Commerce.Services.Carts.Application.Segregation;
 global using Sekmen.Commerce.Services.Carts.Domain.Carts;
 global using Sekmen.Commerce.Services.Carts.Infrastructure;
-global using Sekmen.Commerce.Services.Carts.Domain.Products;
+global using Sekmen.Commerce.Services.Carts.Application.Products;
+global using Sekmen.Commerce.Services.Carts.Application.Coupons;
