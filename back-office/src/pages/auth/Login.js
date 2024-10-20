@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode'
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Col, Form, Input, Button, Row, Card, message } from 'antd'
@@ -15,8 +16,14 @@ export default function Login({ location }) {
   const [ready, setReady] = useState(true)
 
   async function otpSuccess(model) {
+    let jwt = jwtDecode(model.token)
+    if (jwt.role !== "ADMIN"){
+      message.error("You are not authorized")
+      return
+    }
+
     message.success(`Welcome ${model.user.name}`)
-    setUser({ access_token: model.token })
+    setUser(model.token)
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     if (model.user.mustChangePassword) {
@@ -26,6 +33,7 @@ export default function Login({ location }) {
       navigate('/')
     }
   }
+
   const login = async (model) => {
     setReady(false)
     uathService

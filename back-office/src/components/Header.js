@@ -21,9 +21,9 @@ export default function Header() {
   const profile = (
     <div className='ProfileName'>
       <div className='ProfileName-Users'>
-        <UserOutlined style={{ fontSize: 18 }} /> {user?.profile?.name} <DownOutlined />
+        <UserOutlined style={{ fontSize: 18 }} /> {user?.name} <DownOutlined />
       </div>
-      <div className='ProfileName-Desc'>{user?.profile?.companyName}</div>
+      <div className='ProfileName-Desc'>Sekmen.Dev</div>
     </div>
   )
 
@@ -32,7 +32,9 @@ export default function Header() {
       className="site-layout-background"
       style={{ padding: 0, backgroundColor: 'white' }}
     >
-      <div style={{ float: "left", paddingLeft: "10px", marginTop: "-13px" }}><h2>{getEnvironmentName()}</h2></div>
+      <div style={{ float: "left", paddingLeft: "10px", marginTop: "-13px" }}>
+        <h2 style={{margin: "10px 0 0 10px"}}>{getEnvironmentName()}</h2>
+      </div>
       <div className='ProfileMenu'>
         <Menu
           mode="horizontal"
