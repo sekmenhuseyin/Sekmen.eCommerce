@@ -6,6 +6,13 @@ public class CartsController(
     ISender mediatr
 ) : ControllerBase
 {
+    [HttpGet]
+    public async Task<IActionResult> GetItems(GetCartQuery request, CancellationToken cancellationToken)
+    {
+        var result = await mediatr.Send(request, cancellationToken);
+        return Ok(result);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateOrUpdate([FromBody] CreateOrUpdateCartCommand request, CancellationToken cancellationToken)
     {
