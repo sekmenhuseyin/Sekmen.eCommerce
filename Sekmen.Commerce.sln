@@ -38,13 +38,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Au
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Product", "Backend-Product", "{9DCBE494-8885-4F30-9A28-36BDF15F2986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Product.Api", "Backend-Product\Sekmen.Commerce.Services.Product.Api\Sekmen.Commerce.Services.Product.Api.csproj", "{AEF9F45E-00B6-4C9D-8AC7-7513BCC786C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Products.Api", "Backend-Product\Sekmen.Commerce.Services.Products.Api\Sekmen.Commerce.Services.Products.Api.csproj", "{AEF9F45E-00B6-4C9D-8AC7-7513BCC786C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Product.Application", "Backend-Product\Sekmen.Commerce.Services.Product.Application\Sekmen.Commerce.Services.Product.Application.csproj", "{4771BACE-CD94-4395-891D-7C596CF394FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Products.Application", "Backend-Product\Sekmen.Commerce.Services.Products.Application\Sekmen.Commerce.Services.Products.Application.csproj", "{4771BACE-CD94-4395-891D-7C596CF394FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Product.Domain", "Backend-Product\Sekmen.Commerce.Services.Product.Domain\Sekmen.Commerce.Services.Product.Domain.csproj", "{E9BA7BA3-11E5-4EB6-8201-451FE10FFDB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Products.Domain", "Backend-Product\Sekmen.Commerce.Services.Products.Domain\Sekmen.Commerce.Services.Products.Domain.csproj", "{E9BA7BA3-11E5-4EB6-8201-451FE10FFDB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Product.Infrastructure", "Backend-Product\Sekmen.Commerce.Services.Product.Infrastructure\Sekmen.Commerce.Services.Product.Infrastructure.csproj", "{BDD844BC-23D5-4476-964E-6FEF41B573D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Products.Infrastructure", "Backend-Product\Sekmen.Commerce.Services.Products.Infrastructure\Sekmen.Commerce.Services.Products.Infrastructure.csproj", "{BDD844BC-23D5-4476-964E-6FEF41B573D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
