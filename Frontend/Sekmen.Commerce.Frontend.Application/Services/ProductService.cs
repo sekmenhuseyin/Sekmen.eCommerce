@@ -3,7 +3,7 @@ namespace Sekmen.Commerce.Frontend.Application.Services;
 public interface IProductService
 {
     Task<PagedQueryResult<List<ProductDto>>> GetAllAsync();
-    Task<Result<ProductDto?>> GetAsync(int id);
+    Task<ProductDto?> GetAsync(int id);
     Task<Result<object?>> CreateAsync(ProductDto productDto);
     Task<Result<object?>> UpdateAsync(ProductDto productDto);
     Task<Result<object?>> DeleteAsync(int id);
@@ -26,12 +26,12 @@ public sealed class ProductService(
             : default!;
     }
 
-    public async Task<Result<ProductDto?>> GetAsync(int id)
+    public async Task<ProductDto?> GetAsync(int id)
     {
         var response = await SendAsync(new RequestDto(_baseUrl + id));
 
         return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
-            ? JsonSerializer.Deserialize<Result<ProductDto?>>(response.Value.ToString()!, SerializerOptions)!
+            ? JsonSerializer.Deserialize<ProductDto?>(response.Value.ToString()!, SerializerOptions)!
             : default!;
     }
 

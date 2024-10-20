@@ -7,4 +7,7 @@ public record ProductDto(
     string Description,
     string CategoryName,
     string ImageUrl
-);
+)
+{
+    public int Count { get; set; }
+};

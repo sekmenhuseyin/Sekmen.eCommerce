@@ -3,8 +3,8 @@ namespace Sekmen.Commerce.Frontend.Application.Services;
 public interface ICouponService
 {
     Task<PagedQueryResult<List<CouponDto>>> GetAllAsync();
-    Task<Result<CouponDto?>> GetAsync(string code);
-    Task<Result<CouponDto?>> GetAsync(int id);
+    Task<CouponDto?> GetAsync(string code);
+    Task<CouponDto?> GetAsync(int id);
     Task<Result<object?>> CreateAsync(CouponDto couponDto);
     Task<Result<object?>> UpdateAsync(CouponDto couponDto);
     Task<Result<object?>> DeleteAsync(int id);
@@ -27,21 +27,21 @@ public sealed class CouponService(
             : default!;
     }
 
-    public async Task<Result<CouponDto?>> GetAsync(string code)
+    public async Task<CouponDto?> GetAsync(string code)
     {
         var response = await SendAsync(new RequestDto(_baseUrl + code));
 
         return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
-            ? JsonSerializer.Deserialize<Result<CouponDto?>>(response.Value.ToString()!, SerializerOptions)!
+            ? JsonSerializer.Deserialize<CouponDto?>(response.Value.ToString()!, SerializerOptions)!
             : default!;
     }
 
-    public async Task<Result<CouponDto?>> GetAsync(int id)
+    public async Task<CouponDto?> GetAsync(int id)
     {
         var response = await SendAsync(new RequestDto(_baseUrl + id));
 
         return response.IsSuccess && !string.IsNullOrWhiteSpace(response.Value?.ToString())
-            ? JsonSerializer.Deserialize<Result<CouponDto?>>(response.Value.ToString()!, SerializerOptions)!
+            ? JsonSerializer.Deserialize<CouponDto?>(response.Value.ToString()!, SerializerOptions)!
             : default!;
     }
 

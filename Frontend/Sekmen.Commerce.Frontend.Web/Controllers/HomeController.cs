@@ -1,13 +1,26 @@
 namespace Sekmen.Commerce.Frontend.Web.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IProductService productService) : Controller
 {
     public const string Name = "Home";
-    public IActionResult Index()
+
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var products = await productService.GetAllAsync();
+        return View(products);
     }
 
+    public async Task<IActionResult> ProductDetails(int productId)
+    {
+        var response = await productService.GetAsync(productId);
+
+        if (response is not null )
+        {
+            return View(response);
+        }
+
+        return NotFound();
+    }
     public IActionResult Privacy()
     {
         return View();

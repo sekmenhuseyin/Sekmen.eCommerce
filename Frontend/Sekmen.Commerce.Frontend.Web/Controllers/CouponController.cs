@@ -30,10 +30,10 @@ public class CouponController(ICouponService couponService) : Controller
     public async Task<IActionResult> Edit([FromRoute] int id)
     {
         var coupon = await couponService.GetAsync(id);
-        if (coupon.Value is null)
+        if (coupon is null)
             return RedirectToAction(nameof(Index));
 
-        return View(coupon.Value);
+        return View(coupon);
     }
 
     [HttpPost, ValidateAntiForgeryToken]
