@@ -21,4 +21,10 @@
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Product\Create.cshtml" />
+      <AdditionalFiles Include="Views\Product\Edit.cshtml" />
+      <AdditionalFiles Include="Views\Product\Index.cshtml" />
+    </ItemGroup>
+
 </Project>
