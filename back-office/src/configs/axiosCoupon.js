@@ -44,7 +44,7 @@ const client = axios.create({
 client.interceptors.request.use(
   async config => {
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(localStorage.getItem("token"));
       if (user && user.access_token)
         config.headers.Authorization = `Bearer ${user.access_token}`;
     } catch { }

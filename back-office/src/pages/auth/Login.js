@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Col, Form, Input, Button, Row, Card, message } from 'antd'
 import AuthService from './AuthService'
 import LoginContainer from './LoginContainer'
-import { useLocalUser } from '../../hooks/useLocalUser'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 const uathService = new AuthService()
 
@@ -12,18 +12,18 @@ export default function Login({ location }) {
   const navigate = useNavigate()
   const formState = location?.state
   const [formRef] = Form.useForm()
-  const [, setUser] = useLocalUser()
+  const [, setValue] = useLocalStorage()
   const [ready, setReady] = useState(true)
 
   async function otpSuccess(model) {
     let jwt = jwtDecode(model.token)
-    if (jwt.role !== "ADMIN"){
+    if (jwt.role !== "ADMIN") {
       message.error("You are not authorized")
       return
     }
 
     message.success(`Welcome ${model.user.name}`)
-    setUser(model.token)
+    setValue({ access_token: model.token })
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     if (model.user.mustChangePassword) {

@@ -1,27 +1,27 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Drawer, Layout, Menu } from 'antd'
-import { DownOutlined,  UserOutlined,  LogoutOutlined,  UnlockOutlined } from '@ant-design/icons'
+import { DownOutlined, UserOutlined, LogoutOutlined, UnlockOutlined } from '@ant-design/icons'
 import PasswordEdit from '../pages/users/PasswordEdit'
-import { useLocalUser } from '../hooks/useLocalUser'
+import useLocalStorage from '../hooks/useLocalStorage'
 import { getEnvironmentName } from '../configs/origins'
 
 const { Header: AntHeader } = Layout
 
 export default function Header() {
   const navigate = useNavigate()
-  const [user] = useLocalUser()
+  const [user] = useLocalStorage()
   const [drawerVisibility, setDrawerVisibility] = useState(false)
 
   const logout = () => {
-    localStorage.removeItem('user')
+    window.localStorage.clear();
     navigate("/login")
   }
 
   const profile = (
     <div className='ProfileName'>
       <div className='ProfileName-Users'>
-        <UserOutlined style={{ fontSize: 18 }} /> {user?.name} <DownOutlined />
+        <UserOutlined style={{ fontSize: 18 }} /> {user.profile.name} <DownOutlined />
       </div>
       <div className='ProfileName-Desc'>Sekmen.Dev</div>
     </div>
@@ -32,9 +32,7 @@ export default function Header() {
       className="site-layout-background"
       style={{ padding: 0, backgroundColor: 'white' }}
     >
-      <div style={{ float: "left", paddingLeft: "10px", marginTop: "-13px" }}>
-        <h2 style={{margin: "10px 0 0 10px"}}>{getEnvironmentName()}</h2>
-      </div>
+      <div style={{ float: "left", paddingLeft: "10px", marginTop: "-13px" }}><h2>{getEnvironmentName()}</h2></div>
       <div className='ProfileMenu'>
         <Menu
           mode="horizontal"
@@ -44,16 +42,16 @@ export default function Header() {
               key: 'profilemenu',
               children: [
                 { label: 'Change Password', icon: <UnlockOutlined />, key: 'submenu-item-1', onClick: () => setDrawerVisibility(true) },
-                { label: 'Logout', icon:<LogoutOutlined />, key: 'submenu-item-4', onClick: ()=> logout() }
+                { label: 'Logout', icon: <LogoutOutlined />, key: 'submenu-item-4', onClick: () => logout() }
               ]
             }
-        ]} />
+          ]} />
       </div>
       {drawerVisibility && <Drawer
         title="Change Password"
         width={400}
         open={drawerVisibility}
-        onClose={() => { setDrawerVisibility(false)}}
+        onClose={() => { setDrawerVisibility(false) }}
       >
         <PasswordEdit onSuccess={() => { setDrawerVisibility(false) }} />
       </Drawer>}

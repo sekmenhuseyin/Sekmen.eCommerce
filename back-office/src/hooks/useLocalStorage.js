@@ -1,29 +1,33 @@
-import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useState, useEffect } from "react";
 
-export function useLocalStorage(key) {
-    const [storedValue, setStoredValue] = useState(() => {
-      try {
-        const item = window.localStorage.getItem(key);
-        return item
-          ? JSON.parse(item)
-          : null;
-      } catch (error) {
-        console.log(error);
-        return null;
-      }
-    });
+const useLocalStorage = () => {
+  const key = "token"
+  const [value, setValue] = useState(() => {
+    let currentValue;
 
-    const setValue = (value) => {
-      try {
-        const valueToStore = value instanceof Function
-          ? value(storedValue)
-          : value;
-        setStoredValue(valueToStore);
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    try {
+      currentValue = JSON.parse(
+        localStorage.getItem(key) || String(null)
+      );
+    } catch (error) {
+      currentValue = null;
+    }
 
-    return [storedValue, setValue];
-  }
+    if (!currentValue)
+        return currentValue
+    
+    let profile = jwtDecode(currentValue.access_token)
+    profile.isAuthenticated = profile && profile?.exp >= Date.now() / 1000
+
+    return {...currentValue, profile};
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [value, key]);
+
+  return [value, setValue];
+};
+
+export default useLocalStorage;
