@@ -1,10 +1,12 @@
 namespace Sekmen.Commerce.Services.Carts.Application.Carts;
 
 public record CreateOrUpdateCartCommand(CartDto Cart, CartDetailDto Details) : ICommand<Result<bool>>;
+public record DeleteCartCommand(int DetailsId) : ICommand<Result<bool>>;
 
 internal sealed class CartCommandHandler(
     CartDbContext context
-) : ICommandHandler<CreateOrUpdateCartCommand, Result<bool>>
+) : ICommandHandler<CreateOrUpdateCartCommand, Result<bool>>,
+    ICommandHandler<DeleteCartCommand, Result<bool>>
 {
     public async Task<Result<bool>> Handle(CreateOrUpdateCartCommand request, CancellationToken cancellationToken)
     {
@@ -37,5 +39,12 @@ internal sealed class CartCommandHandler(
         _ = await context.SaveChangesAsync(cancellationToken);
 
         return Result.Ok(true);
+    }
+
+    public Task<Result<bool>> Handle(DeleteCartCommand request, CancellationToken cancellationToken)
+    {
+        context.Remove(context.CartDetails.Where(m => m.Id == request.DetailsId));
+
+        return Task.FromResult(Result.Ok(true));
     }
 }
