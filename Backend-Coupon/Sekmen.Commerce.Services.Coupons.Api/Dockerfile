@@ -7,17 +7,20 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Sekmen.Commerce.Services.CouponApi/Sekmen.Commerce.Services.CouponApi.csproj", "Sekmen.Commerce.Services.CouponApi/"]
-RUN dotnet restore "Sekmen.Commerce.Services.CouponApi/Sekmen.Commerce.Services.CouponApi.csproj"
+COPY ["Backend-Coupon/Sekmen.Commerce.Services.Coupons.Api/Sekmen.Commerce.Services.Coupons.Api.csproj", "Backend-Coupon/Sekmen.Commerce.Services.Coupons.Api/"]
+COPY ["Backend-Coupon/Sekmen.Commerce.Services.Coupons.Application/Sekmen.Commerce.Services.Coupons.Application.csproj", "Backend-Coupon/Sekmen.Commerce.Services.Coupons.Application/"]
+COPY ["Backend-Coupon/Sekmen.Commerce.Services.Coupons.Infrastructure/Sekmen.Commerce.Services.Coupons.Infrastructure.csproj", "Backend-Coupon/Sekmen.Commerce.Services.Coupons.Infrastructure/"]
+COPY ["Backend-Coupon/Sekmen.Commerce.Services.Coupons.Domain/Sekmen.Commerce.Services.Coupons.Domain.csproj", "Backend-Coupon/Sekmen.Commerce.Services.Coupons.Domain/"]
+RUN dotnet restore "Backend-Coupon/Sekmen.Commerce.Services.Coupons.Api/Sekmen.Commerce.Services.Coupons.Api.csproj"
 COPY . .
-WORKDIR "/src/Sekmen.Commerce.Services.CouponApi"
-RUN dotnet build "Sekmen.Commerce.Services.CouponApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/Backend-Coupon/Sekmen.Commerce.Services.Coupons.Api"
+RUN dotnet build "Sekmen.Commerce.Services.Coupons.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Sekmen.Commerce.Services.CouponApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Sekmen.Commerce.Services.Coupons.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Sekmen.Commerce.Services.CouponApi.dll"]
+ENTRYPOINT ["dotnet", "Sekmen.Commerce.Services.Coupons.Api.dll"]
