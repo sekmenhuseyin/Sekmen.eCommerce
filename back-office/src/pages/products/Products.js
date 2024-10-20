@@ -24,7 +24,7 @@ export default function Products() {
   function load() {
     setReady(false)
     productService.getAll(filter)
-      .then(m => setData(m.data))
+      .then(m => setData(m.data.value))
       .catch(() => { message.error("Unexpected error") })
       .finally(() => { setReady(true) })
   }

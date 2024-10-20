@@ -1,7 +1,7 @@
 // ReSharper disable UnusedType.Global
 namespace Sekmen.Commerce.Services.Coupons.Application.Coupons;
 
-public record GetAllCouponQuery : IPagedQuery<IPagedQueryResult<IEnumerable<CouponDto>>>
+public record GetAllCouponQuery : IPagedQuery<Result<IPagedQueryResult<IEnumerable<CouponDto>>>>
 {
     public int PageIndex { get; init; } = 1;
     public int PageSize { get; init; } = 10;
@@ -14,11 +14,11 @@ public record GetByCodeCouponQuery(string Code) : IQuery<Result<CouponDto>>;
 internal sealed class GetCouponQueryHandler(
     CouponDbContext context,
     IMapper mapper
-) : IQueryHandler<GetAllCouponQuery, IPagedQueryResult<IEnumerable<CouponDto>>>, 
+) : IQueryHandler<GetAllCouponQuery, Result<IPagedQueryResult<IEnumerable<CouponDto>>>>, 
     IQueryHandler<GetByIdCouponQuery, Result<CouponDto>>, 
     IQueryHandler<GetByCodeCouponQuery, Result<CouponDto>>
 {
-    public async Task<IPagedQueryResult<IEnumerable<CouponDto>>> Handle(GetAllCouponQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IPagedQueryResult<IEnumerable<CouponDto>>>> Handle(GetAllCouponQuery request, CancellationToken cancellationToken)
     {
         var query = await context.Coupons
             .Filter(x => x.Code.Contains(request.Search), request.Search)
@@ -33,7 +33,7 @@ internal sealed class GetCouponQueryHandler(
             .Select(mapper.Map<CouponDto>)
             .ToArray();
 
-        return result.ToPagedQueryResult(request, query.Length);
+        return Result.Ok(result.ToPagedQueryResult(request, query.Length));
     }
 
     public async Task<Result<CouponDto>> Handle(GetByIdCouponQuery request, CancellationToken cancellationToken)

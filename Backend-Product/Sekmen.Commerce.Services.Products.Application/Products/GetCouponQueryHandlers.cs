@@ -1,7 +1,7 @@
 // ReSharper disable UnusedType.Global
 namespace Sekmen.Commerce.Services.Products.Application.Products;
 
-public record GetAllProductQuery : IPagedQuery<IPagedQueryResult<IEnumerable<ProductDto>>>
+public record GetAllProductQuery : IPagedQuery<Result<IPagedQueryResult<IEnumerable<ProductDto>>>>
 {
     public int PageIndex { get; init; } = 1;
     public int PageSize { get; init; } = 10;
@@ -13,10 +13,10 @@ public record GetByIdProductQuery(int Id) : IQuery<Result<ProductDto>>;
 internal sealed class GetProductQueryHandler(
     ProductDbContext context,
     IMapper mapper
-) : IQueryHandler<GetAllProductQuery, IPagedQueryResult<IEnumerable<ProductDto>>>, 
+) : IQueryHandler<GetAllProductQuery, Result<IPagedQueryResult<IEnumerable<ProductDto>>>>, 
     IQueryHandler<GetByIdProductQuery, Result<ProductDto>>
 {
-    public async Task<IPagedQueryResult<IEnumerable<ProductDto>>> Handle(GetAllProductQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IPagedQueryResult<IEnumerable<ProductDto>>>> Handle(GetAllProductQuery request, CancellationToken cancellationToken)
     {
         var query = await context.Products
             .Filter(x => x.Name.Contains(request.Search), request.Search)
@@ -31,7 +31,7 @@ internal sealed class GetProductQueryHandler(
             .Select(mapper.Map<ProductDto>)
             .ToArray();
 
-        return result.ToPagedQueryResult(request, query.Length);
+        return Result.Ok(result.ToPagedQueryResult(request, query.Length));
     }
 
     public async Task<Result<ProductDto>> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)

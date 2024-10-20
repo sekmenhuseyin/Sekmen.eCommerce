@@ -9,8 +9,7 @@ public class AuthController(
 ) : ControllerBase
 {
     [HttpPost("login")]
-    [Consumes("application/x-www-form-urlencoded")]
-    public async Task<IActionResult> Login([FromForm] LoginCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Login([FromBody] LoginCommand command, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(command, cancellationToken);
         return Ok(result);

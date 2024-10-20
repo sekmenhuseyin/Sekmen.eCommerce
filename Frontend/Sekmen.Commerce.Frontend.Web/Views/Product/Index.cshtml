@@ -1,4 +1,4 @@
-@model List<ProductDto>
+@model PagedQueryResult<List<ProductDto>>
 @{
     ViewData["Title"] = "Products";
 }
@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var dto in Model)
+        @foreach (var dto in Model.Result)
         {
             <tr>
                 <td>@dto.Id</td>

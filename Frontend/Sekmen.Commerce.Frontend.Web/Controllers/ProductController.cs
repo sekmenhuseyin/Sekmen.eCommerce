@@ -30,10 +30,10 @@ public class ProductController(IProductService productService) : Controller
     public async Task<IActionResult> Edit([FromRoute] int id)
     {
         var product = await productService.GetAsync(id);
-        if (product is null)
+        if (product.Value is null)
             return RedirectToAction(nameof(Index));
 
-        return View(product);
+        return View(product.Value);
     }
 
     [HttpPost, ValidateAntiForgeryToken]

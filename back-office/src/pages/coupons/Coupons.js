@@ -24,7 +24,7 @@ export default function Coupons() {
   function load() {
     setReady(false)
     couponService.getAll(filter)
-      .then(m => setData(m.data))
+      .then(m => setData(m.data.value))
       .catch(() => { message.error("Unexpected error") })
       .finally(() => { setReady(true) })
   }
