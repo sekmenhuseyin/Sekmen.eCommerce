@@ -8,6 +8,7 @@ import Users from "./pages/users/Users";
 import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Coupons from "./pages/coupons/Coupons";
+import Products from "./pages/products/Products";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route element={<BaseLayout />}>
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="/coupons" element={<Coupons />} />
+            <Route exact path="/products" element={<Products />} />
             <Route exact path="/users" element={<Users />} />
 
             <Route exact path="/forbidden" element={<Page403 />} />

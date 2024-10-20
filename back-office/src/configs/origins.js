@@ -8,6 +8,10 @@ export const getCouponOrigin = () => {
   return `${process.env.REACT_APP_COUPONAPI}/api`
 }
 
+export const getProductOrigin = () => {
+  return `${process.env.REACT_APP_PRODUCTAPI}/api`
+}
+
 export const getEnvironmentName = () => {
   if (getOrigin().includes("localhost"))
     return "Local"

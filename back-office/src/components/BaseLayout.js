@@ -35,8 +35,9 @@ export default function BaseLayout() {
   }
 
   const menuItems = [
-    { label: <Link className='MenuLinks' to="/coupons">Kuponlar</Link>, icon: <UserOutlined />, key: 'coupons' },
-    { label: <Link className='MenuLinks' to="/users">Kullanıcılar</Link>, icon: <UserOutlined />, key: 'users' }
+    { label: <Link className='MenuLinks' to="/coupons">Coupons</Link>, icon: <UserOutlined />, key: 'coupons' },
+    { label: <Link className='MenuLinks' to="/products">Products</Link>, icon: <UserOutlined />, key: 'products' },
+    { label: <Link className='MenuLinks' to="/users">Users</Link>, icon: <UserOutlined />, key: 'users' }
   ]
 
   return (
