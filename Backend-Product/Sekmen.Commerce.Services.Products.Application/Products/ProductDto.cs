@@ -1,6 +1,10 @@
-namespace Sekmen.Commerce.Services.Product.Application.Products;
+namespace Sekmen.Commerce.Services.Products.Application.Products;
 
-public class ProductDto
-{
-    
-}
+public record ProductDto(
+    int Id,
+    string Name,
+    double Price,
+    string Description,
+    string CategoryName,
+    string ImageUrl
+);

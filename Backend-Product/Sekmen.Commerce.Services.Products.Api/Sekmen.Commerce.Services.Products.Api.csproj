@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sekmen.Commerce.Services.Product.Application\Sekmen.Commerce.Services.Product.Application.csproj" />
+      <ProjectReference Include="..\Sekmen.Commerce.Services.Products.Application\Sekmen.Commerce.Services.Products.Application.csproj" />
     </ItemGroup>
 
     <ItemGroup>
