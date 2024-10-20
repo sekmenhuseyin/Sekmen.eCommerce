@@ -7,7 +7,7 @@ public class CartsController(
 ) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetItems(GetCartQuery request, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetItems([FromQuery] GetCartQuery request, CancellationToken cancellationToken)
     {
         var result = await mediatr.Send(request, cancellationToken);
         return Ok(result);

@@ -19,9 +19,10 @@ internal sealed class GetCartQueryHandler(
         if (cart is null)
             return Result.Ok(new CartViewModel());
 
-        var products = (await productService.GetProducts()).ToArray();
         var details = await context.CartDetails.Where(m => m.CartId == cart.Id).ToArrayAsync(cancellationToken);
         var cartDetailsDto = mapper.Map<IEnumerable<CartDetailDto>>(details).ToArray();
+        var products = await productService.GetProducts(cartDetailsDto.Select(m => m.ProductId));
+
         foreach (var dto in cartDetailsDto)
         {
             dto.Product = products.FirstOrDefault(m => m.Id == dto.ProductId);

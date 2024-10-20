@@ -48,7 +48,7 @@ public class Result
 
 public class Result<T> : Result
 {
-    protected Result(): base(false, "error")
+    public Result(): base(false, "error")
     {
         Value = default!;
     }

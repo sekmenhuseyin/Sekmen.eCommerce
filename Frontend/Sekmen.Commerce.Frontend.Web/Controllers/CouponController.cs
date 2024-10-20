@@ -5,6 +5,9 @@ public class CouponController(ICouponService couponService) : Controller
     public async Task<IActionResult> Index()
     {
         var coupons = await couponService.GetAllAsync();
+        if (coupons == default!)
+            return Unauthorized();
+
         return View(coupons);
     }
 

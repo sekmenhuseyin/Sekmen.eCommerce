@@ -27,7 +27,7 @@ internal sealed class CartCommandHandler(
                 m.CartId == cart.Id && m.ProductId == request.Details.ProductId, cancellationToken);
             if (product is null)
             {
-                _ = await context.AddAsync(new CartDetail(cart, request.Details.Id, request.Details.Count), cancellationToken);
+                _ = await context.AddAsync(new CartDetail(cart, request.Details.ProductId, request.Details.Count), cancellationToken);
             }
             else
             {

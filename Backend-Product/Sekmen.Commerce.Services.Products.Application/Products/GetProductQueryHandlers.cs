@@ -10,10 +10,13 @@ public record GetAllProductQuery : IPagedQuery<Result<IPagedQueryResult<IEnumera
 }
 public record GetByIdProductQuery(int Id) : IQuery<Result<ProductDto>>;
 
+public record GetSomeProductsQuery(int[] Ids) : IQuery<Result<ProductDto[]>>;
+
 internal sealed class GetProductQueryHandler(
     ProductDbContext context,
     IMapper mapper
 ) : IQueryHandler<GetAllProductQuery, Result<IPagedQueryResult<IEnumerable<ProductDto>>>>, 
+    IQueryHandler<GetSomeProductsQuery, Result<ProductDto[]>>, 
     IQueryHandler<GetByIdProductQuery, Result<ProductDto>>
 {
     public async Task<Result<IPagedQueryResult<IEnumerable<ProductDto>>>> Handle(GetAllProductQuery request, CancellationToken cancellationToken)
@@ -42,5 +45,19 @@ internal sealed class GetProductQueryHandler(
         return model == null
             ? Result.Fail<ProductDto>("Product not found")
             : Result.Ok(mapper.Map<ProductDto>(model));
+    }
+
+    public async Task<Result<ProductDto[]>> Handle(GetSomeProductsQuery request, CancellationToken cancellationToken)
+    {
+        var query = await context.Products
+            .Where(m => request.Ids.Contains(m.Id))
+            .AsNoTracking()
+            .ToArrayAsync(cancellationToken);
+
+        var result = query
+            .Select(mapper.Map<ProductDto>)
+            .ToArray();
+
+        return Result.Ok(result);
     }
 }

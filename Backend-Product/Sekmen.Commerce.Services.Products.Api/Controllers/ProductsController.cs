@@ -2,7 +2,7 @@ namespace Sekmen.Commerce.Services.Products.Api.Controllers;
 
 [Route("api/products")]
 [ApiController]
-[Authorize]
+[AllowAnonymous]
 public class ProductsController(
     ISender mediatr
 ) : ControllerBase
@@ -18,6 +18,13 @@ public class ProductsController(
     public async Task<IActionResult> GetById([FromRoute] int id, CancellationToken cancellationToken)
     {
         var coupon = await mediatr.Send(new GetByIdProductQuery(id), cancellationToken);
+        return Ok(coupon);
+    }
+
+    [HttpGet("some")]
+    public async Task<IActionResult> GetSomeByIds([FromQuery] GetSomeProductsQuery query, CancellationToken cancellationToken)
+    {
+        var coupon = await mediatr.Send(query, cancellationToken);
         return Ok(coupon);
     }
 
