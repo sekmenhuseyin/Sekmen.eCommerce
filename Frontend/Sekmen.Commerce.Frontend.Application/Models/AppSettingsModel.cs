@@ -10,6 +10,7 @@ public class ServicesModel
     public UrlModel AuthApi { get; init; } = new();
     public UrlModel CouponApi { get; init; } = new();
     public UrlModel ProductApi { get; init; } = new();
+    public UrlModel CartApi { get; init; } = new();
 }
 
 public class UrlModel

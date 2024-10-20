@@ -10,3 +10,4 @@ global using Sekmen.Commerce.Services.Carts.Domain.Carts;
 global using Sekmen.Commerce.Services.Carts.Infrastructure;
 global using Sekmen.Commerce.Services.Carts.Application.Products;
 global using Sekmen.Commerce.Services.Carts.Application.Coupons;
+global using Sekmen.Commerce.Services.Carts.Application.Services;

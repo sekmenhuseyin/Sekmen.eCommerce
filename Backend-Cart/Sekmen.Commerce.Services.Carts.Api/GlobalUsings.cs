@@ -10,4 +10,5 @@ global using Sekmen.Commerce.Services.Carts.Api.Extensions;
 global using Sekmen.Commerce.Services.Carts.Application.Carts;
 global using Sekmen.Commerce.Services.Carts.Application.Models;
 global using Sekmen.Commerce.Services.Carts.Application.Segregation;
+global using Sekmen.Commerce.Services.Carts.Application.Services;
 global using Sekmen.Commerce.Services.Carts.Infrastructure;

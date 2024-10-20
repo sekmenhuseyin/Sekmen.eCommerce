@@ -5,6 +5,8 @@ public record CartDetailDto(
     int CartId,
     CartDto Cart,
     int ProductId,
-    ProductDto Product,
     int Count
-);
+)
+{
+    public ProductDto? Product { get; set; }
+}

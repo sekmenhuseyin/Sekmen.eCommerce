@@ -37,6 +37,11 @@ public static class WebApplicationExtensions
                     }
                 });
             });
+
+        var productUri = new Uri(builder.Configuration.GetValue<string>("Services:ProductApi:Url")!);
+        _ = builder.Services
+            .AddScoped<IProductService, ProductService>()
+            .AddHttpClient<IProductService, ProductService>(m => m.BaseAddress = productUri);
     }
 
     private static void AddInternalAuthentication(this WebApplicationBuilder builder)
