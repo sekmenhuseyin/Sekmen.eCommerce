@@ -1,0 +1,13 @@
+global using System.Text;
+global using MediatR;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.OpenApi.Models;
+global using Sekmen.Commerce.Services.Carts.Api.Extensions;
+global using Sekmen.Commerce.Services.Carts.Application.Carts;
+global using Sekmen.Commerce.Services.Carts.Application.Models;
+global using Sekmen.Commerce.Services.Carts.Application.Segregation;
+global using Sekmen.Commerce.Services.Carts.Infrastructure;
