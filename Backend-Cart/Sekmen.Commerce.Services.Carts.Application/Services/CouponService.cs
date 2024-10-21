@@ -4,7 +4,7 @@ namespace Sekmen.Commerce.Services.Carts.Application.Services;
 
 public interface ICouponService
 {
-    Task<CouponDto> GetCoupon(string code);
+    Task<CouponDto?> GetCoupon(string code);
 }
 
 public sealed class CouponService(HttpClient client) : ICouponService
@@ -14,7 +14,7 @@ public sealed class CouponService(HttpClient client) : ICouponService
         PropertyNameCaseInsensitive = true
     };
 
-    public async Task<CouponDto> GetCoupon(string code)
+    public async Task<CouponDto?> GetCoupon(string code)
     {
         var url = "api/coupons/" + code;
         var response = await client.GetAsync(url);
@@ -22,8 +22,8 @@ public sealed class CouponService(HttpClient client) : ICouponService
             return default!;
 
         var apiContent = await response.Content.ReadAsStringAsync();
-        var dto = JsonSerializer.Deserialize<Result<CouponDto>>(apiContent, _serializerOptions);
-        if (dto is null || string.IsNullOrEmpty(dto.Value.ToString()))
+        var dto = JsonSerializer.Deserialize<Result<CouponDto?>>(apiContent, _serializerOptions);
+        if (dto is null || string.IsNullOrEmpty(dto.Value?.ToString()))
             return default!;
 
         return dto.Value;
