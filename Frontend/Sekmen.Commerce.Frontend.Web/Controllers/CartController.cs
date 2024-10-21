@@ -5,13 +5,8 @@ public class CartController(ICartService cartService) : Controller
     [Authorize]
     public async Task<IActionResult> Index()
     {
-        var cart = await cartService.GetByUserIdAsync(GetUserId());
+        var cart = await cartService.GetByUserIdAsync(User.Claims.First().Value);
 
         return View(cart);
-    }
-
-    private string GetUserId()
-    {
-        return User.Claims.First().Value;
     }
 }

@@ -1,6 +1,9 @@
 namespace Sekmen.Commerce.Frontend.Web.Controllers;
 
-public class HomeController(IProductService productService) : Controller
+public class HomeController(
+    IProductService productService,
+    ICartService cartService
+) : Controller
 {
     public const string Name = "Home";
 
@@ -21,6 +24,19 @@ public class HomeController(IProductService productService) : Controller
 
         return NotFound();
     }
+
+    [HttpPost, Authorize]
+    public async Task<IActionResult> ProductDetails(ProductDto productDto)
+    {
+        var response = await cartService.AddOrUpdateAsync(
+            new CreateOrUpdateCartCommand(User.Claims.First().Value, productDto.Id, productDto.Count)
+        );
+
+        return response.IsSuccess
+            ? RedirectToAction(nameof(Index))
+            : RedirectToAction(nameof(ProductDetails), new { productId = productDto.Id });
+    }
+
     public IActionResult Privacy()
     {
         return View();

@@ -13,10 +13,9 @@ public class Cart
     {
     }
 
-    public Cart(string userId, string? couponCode) : this()
+    public Cart(string userId) : this()
     {
         UserId = userId ?? throw new ArgumentNullException(nameof(userId));
-        CouponCode = couponCode;
     }
 
     public void Update(string? couponCode)
