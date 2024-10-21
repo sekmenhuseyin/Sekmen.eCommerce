@@ -2,29 +2,29 @@ using System.Text.Json;
 
 namespace Sekmen.Commerce.Services.Carts.Application.Services;
 
-public interface IProductService
+public interface ICouponService
 {
-    Task<ProductDto[]> GetProducts(IEnumerable<int> ids);
+    Task<CouponDto> GetCoupon(string code);
 }
 
-public sealed class ProductService(HttpClient client) : IProductService
+public sealed class CouponService(HttpClient client) : ICouponService
 {
     private readonly JsonSerializerOptions _serializerOptions = new()
     {
         PropertyNameCaseInsensitive = true
     };
 
-    public async Task<ProductDto[]> GetProducts(IEnumerable<int> ids)
+    public async Task<CouponDto> GetCoupon(string code)
     {
-        var url = "api/products/some?ids=" + string.Join("&ids=", ids);
+        var url = "api/coupons/" + code;
         var response = await client.GetAsync(url);
         if (!response.IsSuccessStatusCode)
-            return [];
+            return default!;
 
         var apiContent = await response.Content.ReadAsStringAsync();
-        var dto = JsonSerializer.Deserialize<Result<ProductDto[]>>(apiContent, _serializerOptions);
+        var dto = JsonSerializer.Deserialize<Result<CouponDto>>(apiContent, _serializerOptions);
         if (dto is null || string.IsNullOrEmpty(dto.Value.ToString()))
-            return [];
+            return default!;
 
         return dto.Value;
     }

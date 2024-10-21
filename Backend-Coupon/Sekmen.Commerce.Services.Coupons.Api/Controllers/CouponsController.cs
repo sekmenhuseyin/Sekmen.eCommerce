@@ -22,7 +22,7 @@ public class CouponsController(
     }
 
     [HttpGet("{code}")]
-    public async Task<IActionResult> GetById([FromRoute] string code, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetByCode([FromRoute] string code, CancellationToken cancellationToken)
     {
         var coupon = await mediatr.Send(new GetByCodeCouponQuery(code), cancellationToken);
         return Ok(coupon);

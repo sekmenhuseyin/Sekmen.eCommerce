@@ -5,6 +5,7 @@ public static class WebApplicationExtensions
     internal static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
         builder.AddInternalAuthentication();
+        builder.AddApiServices();
         builder.Services
             .AddAutoMapper(typeof(ICommand))
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
@@ -37,11 +38,19 @@ public static class WebApplicationExtensions
                     }
                 });
             });
+    }
 
+    private static void AddApiServices(this WebApplicationBuilder builder)
+    {
         var productUri = new Uri(builder.Configuration.GetValue<string>("Services:ProductApi:Url")!);
         builder.Services
             .AddScoped<IProductService, ProductService>()
             .AddHttpClient<IProductService, ProductService>(m => m.BaseAddress = productUri);
+
+        var couponUri = new Uri(builder.Configuration.GetValue<string>("Services:CouponApi:Url")!);
+        builder.Services
+            .AddScoped<ICouponService, CouponService>()
+            .AddHttpClient<ICouponService, CouponService>(m => m.BaseAddress = couponUri);
     }
 
     private static void AddInternalAuthentication(this WebApplicationBuilder builder)
