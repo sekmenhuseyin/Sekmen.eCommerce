@@ -11,7 +11,8 @@ public record CartViewModel(
 internal sealed class GetCartQueryHandler(
     CartDbContext context,
     IMapper mapper,
-    IProductService productService
+    IProductService productService,
+    ICouponService couponService
 ) : IQueryHandler<GetCartQuery, Result<CartViewModel>>
 {
     public async Task<Result<CartViewModel>> Handle(GetCartQuery request, CancellationToken cancellationToken)
@@ -22,16 +23,25 @@ internal sealed class GetCartQueryHandler(
 
         var details = await context.CartDetails.Where(m => m.CartId == cart.Id).ToArrayAsync(cancellationToken);
         var cartDetailsDto = mapper.Map<IEnumerable<CartDetailDto>>(details).ToArray();
+        var cartTotal = cartDetailsDto.Select(m => m.Count * m.Product?.Price ?? 0).Sum();
         var products = await productService.GetProducts(cartDetailsDto.Select(m => m.ProductId));
 
+        if (!string.IsNullOrWhiteSpace(cart.CouponCode))
+        {
+            var couponDto = await couponService.GetCoupon(cart.CouponCode);
+            if (cartTotal >= couponDto.MinAmount)
+            {
+                var discountAmount = cartTotal * couponDto.DiscountAmount / 100;
+                cart.Update(discountAmount, cartTotal);
+            }
+            
+        }
+
+        var cartDto = mapper.Map<CartDto>(cart);
         foreach (var dto in cartDetailsDto)
         {
             dto.Product = products.FirstOrDefault(m => m.Id == dto.ProductId);
         }
-        var cartDto = mapper.Map<CartDto>(cart) with
-        {
-            Total = cartDetailsDto.Select(m => m.Count * m.Product?.Price ?? 0).Sum()
-        };
 
         return Result.Ok(new CartViewModel(
             cartDto,

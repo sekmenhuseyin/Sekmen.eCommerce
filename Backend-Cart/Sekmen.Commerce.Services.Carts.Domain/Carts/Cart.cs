@@ -23,4 +23,10 @@ public class Cart
     {
         CouponCode = couponCode;
     }
+
+    public void Update(double discountAmount, double total)
+    {
+        DiscountAmount = discountAmount;
+        Total = total;
+    }
 }
