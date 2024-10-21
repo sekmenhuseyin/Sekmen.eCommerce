@@ -42,15 +42,21 @@ public static class WebApplicationExtensions
 
     private static void AddApiServices(this WebApplicationBuilder builder)
     {
+        builder.Services
+			.AddHttpContextAccessor()
+			.AddScoped<BackendApiAuthenticationHttpClientHandler>();
+
         var productUri = new Uri(builder.Configuration.GetValue<string>("Services:ProductApi:Url")!);
         builder.Services
             .AddScoped<IProductService, ProductService>()
-            .AddHttpClient<IProductService, ProductService>(m => m.BaseAddress = productUri);
+            .AddHttpClient<IProductService, ProductService>(m => m.BaseAddress = productUri)
+            .AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
 
         var couponUri = new Uri(builder.Configuration.GetValue<string>("Services:CouponApi:Url")!);
         builder.Services
             .AddScoped<ICouponService, CouponService>()
-            .AddHttpClient<ICouponService, CouponService>(m => m.BaseAddress = couponUri);
+            .AddHttpClient<ICouponService, CouponService>(m => m.BaseAddress = couponUri)
+            .AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
     }
 
     private static void AddInternalAuthentication(this WebApplicationBuilder builder)
