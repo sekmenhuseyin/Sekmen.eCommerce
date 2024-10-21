@@ -6,6 +6,7 @@ public interface ICartService
     Task<Result<object?>> AddOrUpdateAsync(CreateOrUpdateCartCommand command);
     Task<Result<object?>> RemoveAsync(string userId, int cartDetailsId);
     Task<Result<object?>> ApplyCouponAsync(ApplyCouponCommand command);
+    Task<Result<object?>> SendEmailAsync(SendEmailCartCommand command);
 }
 
 public sealed class CartService(
@@ -52,6 +53,15 @@ public sealed class CartService(
         return await SendAsync(new RequestDto(_baseUrl + "apply-coupon")
         {
             HttpMethod = HttpMethod.Put,
+            Data = command
+        });
+    }
+
+    public async Task<Result<object?>> SendEmailAsync(SendEmailCartCommand command)
+    {
+        return await SendAsync(new RequestDto(_baseUrl + "email")
+        {
+            HttpMethod = HttpMethod.Post,
             Data = command
         });
     }

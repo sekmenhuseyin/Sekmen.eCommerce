@@ -25,4 +25,13 @@ public class CartController(ICartService cartService) : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Email(CartViewModel command)
+    {
+        var model = new SendEmailCartCommand(User.Claims.First().Value, command.Cart.Id);
+        await cartService.SendEmailAsync(model);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
