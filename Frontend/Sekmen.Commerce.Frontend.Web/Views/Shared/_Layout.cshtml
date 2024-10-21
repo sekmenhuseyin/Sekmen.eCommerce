@@ -39,6 +39,9 @@
                             <li><a class="dropdown-item text-dark" asp-controller="Product" asp-action="Index">Products</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">Cart</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     @if (User.Identity is null || !User.Identity.IsAuthenticated)

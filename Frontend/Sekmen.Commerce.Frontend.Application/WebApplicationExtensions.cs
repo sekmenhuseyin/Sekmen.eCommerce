@@ -12,10 +12,12 @@ public static class WebApplicationExtensions
             .AddScoped<ITokenProviderService, TokenProviderService>()
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<ICouponService, CouponService>()
-            .AddScoped<IProductService, ProductService>();
+            .AddScoped<IProductService, ProductService>()
+            .AddScoped<ICartService, CartService>();
         builder.Services.AddHttpClient<IAuthService, AuthService>();
         builder.Services.AddHttpClient<ICouponService, CouponService>();
         builder.Services.AddHttpClient<IProductService, ProductService>();
+        builder.Services.AddHttpClient<ICartService, CartService>();
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
