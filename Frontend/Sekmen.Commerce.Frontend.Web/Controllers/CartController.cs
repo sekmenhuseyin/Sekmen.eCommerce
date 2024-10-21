@@ -12,7 +12,7 @@ public class CartController(ICartService cartService) : Controller
 
     public async Task<IActionResult> Remove(int cartDetailsId)
     {
-        await cartService.RemoveAsync(cartDetailsId);
+        await cartService.RemoveAsync(User.Claims.First().Value, cartDetailsId);
 
         return RedirectToAction(nameof(Index));
     }
