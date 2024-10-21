@@ -4,7 +4,7 @@ public interface ICartService
 {
     Task<CartViewModel?> GetByUserIdAsync(string userId);
     Task<Result<object?>> AddOrUpdateAsync(CreateOrUpdateCartCommand command);
-    Task<Result<object?>> RemoveAsync(string cartDetailsId);
+    Task<Result<object?>> RemoveAsync(int cartDetailsId);
     Task<Result<object?>> ApplyCouponAsync(ApplyCouponCommand command);
 }
 
@@ -34,7 +34,7 @@ public sealed class CartService(
         });
     }
 
-    public async Task<Result<object?>> RemoveAsync(string cartDetailsId)
+    public async Task<Result<object?>> RemoveAsync(int cartDetailsId)
     {
         return await SendAsync(new RequestDto(_baseUrl)
         {

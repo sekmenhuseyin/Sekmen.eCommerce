@@ -11,7 +11,7 @@
     }
 }
 
-<form method="post" asp-action="EmailCart">
+<form method="post">
     <br />
     <input asp-for="@Model.Cart.UserId" hidden />
     <input asp-for="@Model.Cart.Id" hidden />
@@ -74,15 +74,19 @@
                     <div class="col-6">
                         @if (string.IsNullOrEmpty(Model.Cart.CouponCode))
                         {
-                        <span>Coupon:</span>
-                        <input asp-for="@Model.Cart.CouponCode" />
-                        <button type="submit" asp-action="ApplyCoupon" class="btn btn-sm btn-success"> Apply </button>
+                            <span>Coupon:</span>
+                            <input asp-for="@Model.Cart.CouponCode" />
+                            <button type="submit" asp-action="ApplyCoupon" class="btn btn-sm btn-success">
+                                Apply
+                            </button>
                         }
                         else
                         {
-                        <span>Coupon:</span>
-                        <input asp-for="@Model.Cart.CouponCode" disabled/>
-                        <button type="submit" asp-action="RemoveCoupon" class="btn btn-sm btn-success"> Remove </button>
+                            <span>Coupon:</span>
+                            <input asp-for="@Model.Cart.CouponCode" disabled/>
+                            <button type="submit" asp-action="ApplyCoupon" class="btn btn-sm btn-danger">
+                                Remove
+                            </button>
                         }
                     </div>
                     <div class="col-6 text-end">

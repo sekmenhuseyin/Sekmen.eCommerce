@@ -40,15 +40,20 @@ internal sealed class GetCartQueryHandler(
 
         //update coupon details
         CouponDto? couponDto = default;
-        if (!string.IsNullOrWhiteSpace(cart.CouponCode))
+        if (string.IsNullOrWhiteSpace(cart.CouponCode))
+        {
+            cart.Update(0, cartTotal);
+        }
+        else
         {
             couponDto = await couponService.GetCoupon(cart.CouponCode);
             if (couponDto is not null && cartTotal >= couponDto.MinAmount)
             {
                 var discountAmount = cartTotal * couponDto.DiscountAmount / 100;
-                cart.Update(discountAmount, cartTotal);
+                cart.Update(discountAmount, cartTotal - discountAmount);
             }
         }
+
         var cartDto = mapper.Map<CartDto>(cart);
         if (couponDto is not null) cartDto.Coupon = couponDto;
 
