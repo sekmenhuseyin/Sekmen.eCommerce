@@ -1,3 +1,4 @@
+// ReSharper disable NotAccessedPositionalProperty.Global
 namespace Sekmen.Commerce.Services.Carts.Application.Carts;
 
 public record GetCartQuery(string UserId) : IQuery<Result<CartViewModel>>;

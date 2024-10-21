@@ -14,7 +14,7 @@ internal sealed class CreateCouponCommandHandler(
     public async Task<Result<CouponDto>> Handle(CreateCouponCommand request, CancellationToken cancellationToken)
     {
         var coupon = mapper.Map<Coupon>(request.CouponDto);
-        _ = await context.AddAsync(coupon, cancellationToken);
+        await context.AddAsync(coupon, cancellationToken);
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(request.CouponDto)
@@ -24,7 +24,7 @@ internal sealed class CreateCouponCommandHandler(
     public async Task<Result<CouponDto>> Handle(UpdateCouponCommand request, CancellationToken cancellationToken)
     {
         var coupon = mapper.Map<Coupon>(request.CouponDto);
-        _ = context.Update(coupon);
+        context.Update(coupon);
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(request.CouponDto)
@@ -37,7 +37,7 @@ internal sealed class CreateCouponCommandHandler(
         if (coupon is null)
             return Result.Ok(true);
 
-        _ = context.Remove(coupon);
+        context.Remove(coupon);
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(true)

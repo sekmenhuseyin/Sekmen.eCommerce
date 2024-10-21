@@ -8,5 +8,4 @@ public record CartDetailDto(
 )
 {
     public ProductDto? Product { get; set; }
-    public CartDto? Cart { get; set; }
 }

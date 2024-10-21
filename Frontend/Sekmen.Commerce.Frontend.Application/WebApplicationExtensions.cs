@@ -4,7 +4,7 @@ public static class WebApplicationExtensions
 {
     public static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
-        _ = builder.Services
+        builder.Services
             .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
             .AddHttpContextAccessor()
             .AddHttpClient()
@@ -13,10 +13,10 @@ public static class WebApplicationExtensions
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<ICouponService, CouponService>()
             .AddScoped<IProductService, ProductService>();
-        _ = builder.Services.AddHttpClient<IAuthService, AuthService>();
-        _ = builder.Services.AddHttpClient<ICouponService, CouponService>();
-        _ = builder.Services.AddHttpClient<IProductService, ProductService>();
-        _ = builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        builder.Services.AddHttpClient<IAuthService, AuthService>();
+        builder.Services.AddHttpClient<ICouponService, CouponService>();
+        builder.Services.AddHttpClient<IProductService, ProductService>();
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);

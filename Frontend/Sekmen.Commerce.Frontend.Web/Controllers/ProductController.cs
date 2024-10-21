@@ -52,7 +52,7 @@ public class ProductController(IProductService productService) : Controller
 
     public async Task<IActionResult> Delete(int id)
     {
-        _ = await productService.DeleteAsync(id);
+        await productService.DeleteAsync(id);
         return RedirectToAction(nameof(Index));
     }
 }

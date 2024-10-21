@@ -7,7 +7,7 @@ public static class WebApplicationExtensions
     {
         builder.AddInternalAuthentication();
         builder.AddIdentity();
-        _ = builder.Services
+        builder.Services
             .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
             .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
             .AddAutoMapper(typeof(ICommand))
@@ -46,7 +46,7 @@ public static class WebApplicationExtensions
     private static void AddIdentity(this WebApplicationBuilder builder)
     {
         var passwordOptions = builder.Configuration.GetRequiredSection("PasswordOptions").Get<PasswordOptionsModel>();
-        _ = builder.Services
+        builder.Services
             .AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
@@ -71,7 +71,7 @@ public static class WebApplicationExtensions
         var issuer = builder.Configuration.GetValue<string>("JwtOptions:Issuer")!;
         var audience = builder.Configuration.GetValue<string>("JwtOptions:Audience")!;
         var key = Encoding.ASCII.GetBytes(secret);
-        _ = builder.Services
+        builder.Services
             .AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -106,7 +106,7 @@ public static class WebApplicationExtensions
                     }
                 };
             });
-        _ = builder.Services.AddAuthorization(options =>
+        builder.Services.AddAuthorization(options =>
         {
             options.FallbackPolicy = options.DefaultPolicy;
             options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)

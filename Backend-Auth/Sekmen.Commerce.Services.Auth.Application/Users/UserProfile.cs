@@ -5,6 +5,6 @@ public class UserProfile : Profile
 {
     public UserProfile()
     {
-        _ = CreateMap<ApplicationUser, UserDto>().ReverseMap();
+        CreateMap<ApplicationUser, UserDto>().ReverseMap();
     }
 }

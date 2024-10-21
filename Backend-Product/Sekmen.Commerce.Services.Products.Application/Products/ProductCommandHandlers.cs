@@ -14,7 +14,7 @@ internal sealed class CreateProductCommandHandler(
     public async Task<Result<ProductDto>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         var product = mapper.Map<Product>(request.ProductDto);
-        _ = await context.AddAsync(product, cancellationToken);
+        await context.AddAsync(product, cancellationToken);
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(request.ProductDto)
@@ -24,7 +24,7 @@ internal sealed class CreateProductCommandHandler(
     public async Task<Result<ProductDto>> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
         var product = mapper.Map<Product>(request.ProductDto);
-        _ = context.Update(product);
+        context.Update(product);
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(request.ProductDto)
@@ -37,7 +37,7 @@ internal sealed class CreateProductCommandHandler(
         if (product is null)
             return Result.Ok(true);
 
-        _ = context.Remove(product);
+        context.Remove(product);
         var result = await context.SaveChangesAsync(cancellationToken);
         return result > 0
             ? Result.Ok(true)

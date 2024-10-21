@@ -16,18 +16,21 @@ internal sealed class CartCommandHandler(
             //create cart
             var result = await context.AddAsync(new Cart(request.Cart.UserId, request.Cart.CouponCode), cancellationToken);
             cart = result.Entity;
-            _ = await context.AddAsync(new CartDetail(cart, request.Details.Id, request.Details.Count), cancellationToken);
+            await context.AddAsync(new CartDetail(cart, request.Details.Id, request.Details.Count), cancellationToken);
         }
         else
         {
-            cart.Update(request.Cart.CouponCode);
-            context.Update(cart);
+            if (!string.IsNullOrWhiteSpace(request.Cart.CouponCode))
+            {
+                cart.Update(request.Cart.CouponCode);
+                context.Update(cart);
+            }
             //check if details exists
             var product = await context.CartDetails.FirstOrDefaultAsync(m =>
                 m.CartId == cart.Id && m.ProductId == request.Details.ProductId, cancellationToken);
             if (product is null)
             {
-                _ = await context.AddAsync(new CartDetail(cart, request.Details.ProductId, request.Details.Count), cancellationToken);
+                await context.AddAsync(new CartDetail(cart, request.Details.ProductId, request.Details.Count), cancellationToken);
             }
             else
             {
@@ -36,7 +39,7 @@ internal sealed class CartCommandHandler(
             }
         }
 
-        _ = await context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
 
         return Result.Ok(true);
     }

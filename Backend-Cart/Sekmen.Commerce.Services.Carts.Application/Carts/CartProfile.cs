@@ -4,7 +4,7 @@ public class CartProfile : Profile
 {
     public CartProfile()
     {
-        _ = CreateMap<Cart, CartDto>().ReverseMap();
-        _ = CreateMap<CartDetail, CartDetailDto>().ReverseMap();
+        CreateMap<Cart, CartDto>().ReverseMap();
+        CreateMap<CartDetail, CartDetailDto>().ReverseMap();
     }
 }

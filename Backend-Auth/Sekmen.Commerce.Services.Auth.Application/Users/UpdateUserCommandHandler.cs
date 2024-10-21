@@ -17,15 +17,15 @@ internal sealed class UpdateUserCommandHandler(
 
         user.Name = request.Name;
         user.PhoneNumber = request.PhoneNumber;
-        _ = await userManager.UpdateAsync(user);
+        await userManager.UpdateAsync(user);
 
         var roles = await userManager.GetRolesAsync(user);
         if (roles.First() == request.Role)
             return Result.Ok(true);
 
-        _ = await userManager.RemoveFromRolesAsync(user, roles);
+        await userManager.RemoveFromRolesAsync(user, roles);
         var roleName = request.Role.ToUpperInvariant();
-        _ = await userManager.AddToRoleAsync(user, roleName);
+        await userManager.AddToRoleAsync(user, roleName);
 
         return Result.Ok(true);
     }

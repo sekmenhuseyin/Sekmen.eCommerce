@@ -55,7 +55,7 @@ public class CouponController(ICouponService couponService) : Controller
 
     public async Task<IActionResult> Delete(int id)
     {
-        _ = await couponService.DeleteAsync(id);
+        await couponService.DeleteAsync(id);
         return RedirectToAction(nameof(Index));
     }
 }

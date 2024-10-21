@@ -4,6 +4,6 @@ public class ProductProfile : Profile
 {
     public ProductProfile()
     {
-        _ = CreateMap<Product, ProductDto>().ReverseMap();
+        CreateMap<Product, ProductDto>().ReverseMap();
     }
 }

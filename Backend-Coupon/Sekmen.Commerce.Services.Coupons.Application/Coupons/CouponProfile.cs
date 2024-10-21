@@ -5,6 +5,6 @@ public class CouponProfile : Profile
 {
     public CouponProfile()
     {
-        _ = CreateMap<Coupon, CouponDto>().ReverseMap();
+        CreateMap<Coupon, CouponDto>().ReverseMap();
     }
 }

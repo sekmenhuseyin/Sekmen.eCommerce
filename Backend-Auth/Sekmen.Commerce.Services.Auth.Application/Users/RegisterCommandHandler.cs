@@ -25,8 +25,8 @@ internal sealed class RegisterCommandHandler(
 
         var roleName = request.Role.ToUpperInvariant();
         var isExists = await roleManager.RoleExistsAsync(roleName);
-        if (!isExists) _ = await roleManager.CreateAsync(new IdentityRole(roleName));
-        _ = await userManager.AddToRoleAsync(user, roleName);
+        if (!isExists) await roleManager.CreateAsync(new IdentityRole(roleName));
+        await userManager.AddToRoleAsync(user, roleName);
 
         return Result.Ok(true);
     }
