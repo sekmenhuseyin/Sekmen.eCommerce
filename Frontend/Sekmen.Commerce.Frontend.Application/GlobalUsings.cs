@@ -9,6 +9,7 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Sekmen.Commerce.Frontend.Application.Models;
 global using Sekmen.Commerce.Frontend.Application.Models.Auth;
+global using Sekmen.Commerce.Frontend.Application.Models.Carts;
 global using Sekmen.Commerce.Frontend.Application.Models.Coupons;
 global using Sekmen.Commerce.Frontend.Application.Models.Products;
 global using Sekmen.Commerce.Frontend.Application.Services;
