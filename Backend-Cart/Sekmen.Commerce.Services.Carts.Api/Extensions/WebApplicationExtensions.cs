@@ -5,7 +5,7 @@ public static class WebApplicationExtensions
     internal static void AddInternalDependencies(this WebApplicationBuilder builder)
     {
         builder.AddInternalAuthentication();
-        _ = builder.Services
+        builder.Services
             .AddAutoMapper(typeof(ICommand))
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
             .AddDbContext<CartDbContext>(options => 
@@ -39,7 +39,7 @@ public static class WebApplicationExtensions
             });
 
         var productUri = new Uri(builder.Configuration.GetValue<string>("Services:ProductApi:Url")!);
-        _ = builder.Services
+        builder.Services
             .AddScoped<IProductService, ProductService>()
             .AddHttpClient<IProductService, ProductService>(m => m.BaseAddress = productUri);
     }
@@ -50,7 +50,7 @@ public static class WebApplicationExtensions
         var issuer = builder.Configuration.GetValue<string>("JwtOptions:Issuer")!;
         var audience = builder.Configuration.GetValue<string>("JwtOptions:Audience")!;
         var key = Encoding.ASCII.GetBytes(secret);
-        _ = builder.Services
+        builder.Services
             .AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -67,7 +67,7 @@ public static class WebApplicationExtensions
                     ValidAudience = audience
                 };
             });
-        _ = builder.Services.AddAuthorization();
+        builder.Services.AddAuthorization();
     }
 
     internal static void ApplyMigrations(this WebApplication app)

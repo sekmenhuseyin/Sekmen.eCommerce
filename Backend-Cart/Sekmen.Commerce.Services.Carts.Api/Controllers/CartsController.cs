@@ -20,6 +20,13 @@ public class CartsController(
         return Ok(result);
     }
 
+    [HttpPut("apply-coupon")]
+    public async Task<IActionResult> ApplyCoupon([FromBody] ApplyCouponCommand request, CancellationToken cancellationToken)
+    {
+        var result = await mediatr.Send(request, cancellationToken);
+        return Ok(result);
+    }
+
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] DeleteCartCommand request, CancellationToken cancellationToken)
     {
