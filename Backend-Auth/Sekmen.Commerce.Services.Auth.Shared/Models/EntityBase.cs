@@ -2,19 +2,19 @@ namespace Sekmen.Commerce.Services.Auth.Shared.Models;
 
 public interface IEntity
 {
-    IEnumerable<INotification> Events { get; }
+    IEnumerable<IEvent> Events { get; }
     void ClearEvents();
-    void AddEvent(INotification @event);
+    void AddEvent(IEvent @event);
 }
 
 public abstract class EntityBase : IEntity
 {
     [NotMapped]
-    public IEnumerable<INotification> Events => _events.Values;
+    public IEnumerable<IEvent> Events => _events.Values;
 
-    private readonly IDictionary<Type, INotification> _events = new Dictionary<Type, INotification>();
+    private readonly IDictionary<Type, IEvent> _events = new Dictionary<Type, IEvent>();
 
-    public void AddEvent(INotification @event)
+    public void AddEvent(IEvent @event)
     {
         _events[@event.GetType()] = @event;
     }

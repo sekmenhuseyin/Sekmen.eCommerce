@@ -9,6 +9,7 @@ internal sealed class EmailService : IEmailService
 {
     public Task<bool> SendAsync(string recipient, string subject, string body)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("EmailService.SendAsync: " + recipient + subject);
+        return Task.FromResult(true);
     }
 }

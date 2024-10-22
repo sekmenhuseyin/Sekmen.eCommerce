@@ -1,4 +1,6 @@
 ﻿namespace Sekmen.Commerce.Services.Email.App.Segregation;
 
-public interface IEventHandler<in TEvent> : INotificationHandler<TEvent>
-    where TEvent : class, IEvent;
+public interface IEventHandler<in TEvent> : ICapSubscribe where TEvent : IEvent
+{
+    public Task Handle(TEvent notification, CancellationToken cancellationToken);
+}

@@ -22,11 +22,11 @@ public sealed class ApplicationUser : IdentityUser, IEntity
     }
 
     [NotMapped]
-    public IEnumerable<INotification> Events => _events.Values;
+    public IEnumerable<IEvent> Events => _events.Values;
 
-    private readonly Dictionary<Type, INotification> _events = new();
+    private readonly Dictionary<Type, IEvent> _events = new();
 
-    public void AddEvent(INotification @event)
+    public void AddEvent(IEvent @event)
     {
         _events[@event.GetType()] = @event;
     }

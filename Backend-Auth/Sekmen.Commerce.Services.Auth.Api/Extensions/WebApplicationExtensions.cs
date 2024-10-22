@@ -49,12 +49,6 @@ public static class WebApplicationExtensions
         var busSetting = builder.Configuration.GetSection(RabbitMqSettings.SettingPath).Get<RabbitMqSettings>()!;
         if (busSetting.Disabled)
             return;
-        //
-        // _ = builder.Services.Scan(x => x
-        //     .FromAssemblyOf<IUserQuery>()
-        //     .AddClasses(c => c.AssignableTo(typeof(IAsyncEventHandler<>)))
-        //     .AsImplementedInterfaces()
-        //     .WithTransientLifetime());
 
         _ = builder.Services.AddCap(x =>
         {
