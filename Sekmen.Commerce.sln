@@ -62,7 +62,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.Infrastructure", "Backend-Email\Sekmen.Commerce.Services.Email.Infrastructure\Sekmen.Commerce.Services.Email.Infrastructure.csproj", "{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{48315E1F-8DDC-4831-982E-282857EB2E99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Gateway", "Gateway\Sekmen.Commerce.Gateway.csproj", "{48315E1F-8DDC-4831-982E-282857EB2E99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
