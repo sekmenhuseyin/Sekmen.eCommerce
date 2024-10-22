@@ -62,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.Infrastructure", "Backend-Email\Sekmen.Commerce.Services.Email.Infrastructure\Sekmen.Commerce.Services.Email.Infrastructure.csproj", "{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{48315E1F-8DDC-4831-982E-282857EB2E99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +154,10 @@ Global
 		{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48315E1F-8DDC-4831-982E-282857EB2E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48315E1F-8DDC-4831-982E-282857EB2E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48315E1F-8DDC-4831-982E-282857EB2E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48315E1F-8DDC-4831-982E-282857EB2E99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
@@ -175,5 +181,6 @@ Global
 		{1BEC49CF-E908-427C-A2CF-5B504380D160} = {91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}
 		{3314F91D-DDC6-401D-AB85-922BA456A6C5} = {7520100F-BBE6-4FF3-86DC-E8BD58C65C3C}
 		{9F1808EF-A9BD-418E-AAD8-06F92DB720DE} = {91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}
+		{48315E1F-8DDC-4831-982E-282857EB2E99} = {47E564B1-ABBB-43CA-962E-B8EC2F71775F}
 	EndGlobalSection
 EndGlobal
