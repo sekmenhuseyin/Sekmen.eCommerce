@@ -1,11 +1,11 @@
-namespace Sekmen.Commerce.Services.Email.App;
+namespace Sekmen.Commerce.Services.Email.Infrastructure;
 
 public interface IEmailService
 {
     Task<bool> SendAsync(string recipient, string subject, string body);
 }
 
-internal sealed class EmailService : IEmailService
+public sealed class EmailService : IEmailService
 {
     public Task<bool> SendAsync(string recipient, string subject, string body)
     {

@@ -2,7 +2,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var busSetting = builder.Configuration.GetSection(RabbitMqSettings.SettingPath).Get<RabbitMqSettings>()!;
 builder.Services
-    .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<IEvent>())
     .AddDbContext<MainDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     )
