@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.Auth.Application.Segregation;
+namespace Sekmen.Commerce.Services.Auth.Shared.Segregation;
 
 public interface ICommand : IRequest;
 

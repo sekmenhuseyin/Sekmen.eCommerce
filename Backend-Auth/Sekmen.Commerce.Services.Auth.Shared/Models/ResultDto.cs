@@ -1,6 +1,7 @@
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable ConvertIfStatementToSwitchStatement
-namespace Sekmen.Commerce.Services.Auth.Application.Models;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+namespace Sekmen.Commerce.Services.Auth.Shared.Models;
 
 public class Result
 {

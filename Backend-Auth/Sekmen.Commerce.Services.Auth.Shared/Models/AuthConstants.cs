@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.Auth.Application.Models;
+namespace Sekmen.Commerce.Services.Auth.Shared.Models;
 
 public static class AuthConstants
 {
