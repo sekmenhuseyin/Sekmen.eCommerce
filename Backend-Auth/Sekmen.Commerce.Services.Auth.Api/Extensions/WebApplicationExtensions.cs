@@ -7,11 +7,12 @@ public static class WebApplicationExtensions
     {
         builder.AddInternalAuthentication();
         builder.AddIdentity();
+        builder.AddBus();
         builder.Services
             .AddSingleton(_ => builder.Configuration.Get<AppSettingsModel>()!)
             .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
             .AddAutoMapper(typeof(ICommand))
-            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ICommand>())
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<JwtTokenGenerator>())
             .AddCors()
             .AddSwaggerGen(options =>
             {
@@ -41,6 +42,32 @@ public static class WebApplicationExtensions
             .AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
+    }
+
+    private static void AddBus(this WebApplicationBuilder builder)
+    {
+        var busSetting = builder.Configuration.GetSection(RabbitMqSettings.SettingPath).Get<RabbitMqSettings>()!;
+        if (busSetting.Disabled)
+            return;
+        //
+        // _ = builder.Services.Scan(x => x
+        //     .FromAssemblyOf<IUserQuery>()
+        //     .AddClasses(c => c.AssignableTo(typeof(IAsyncEventHandler<>)))
+        //     .AsImplementedInterfaces()
+        //     .WithTransientLifetime());
+
+        _ = builder.Services.AddCap(x =>
+        {
+            x.UseEntityFramework<AuthDbContext>();
+            x.UseRabbitMQ(options =>
+            {
+                options.HostName = busSetting.Connection;
+                options.UserName = busSetting.Username;
+                options.Password = busSetting.Password;
+            });
+            x.DefaultGroupName = busSetting.QueueName;
+            x.TopicNamePrefix = busSetting.TopicPrefix;
+        });
     }
 
     private static void AddIdentity(this WebApplicationBuilder builder)

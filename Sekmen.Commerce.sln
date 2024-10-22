@@ -4,8 +4,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{25
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{47E564B1-ABBB-43CA-962E-B8EC2F71775F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{0E653161-D943-4AB7-8374-FDEEFC2C0A14}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Coupon", "Backend-Coupon", "{59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Coupons.Api", "Backend-Coupon\Sekmen.Commerce.Services.Coupons.Api\Sekmen.Commerce.Services.Coupons.Api.csproj", "{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}"
@@ -58,9 +56,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Ca
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Email", "Backend-Email", "{91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.MessageBus", "Sekmen.Commerce.MessageBus\Sekmen.Commerce.MessageBus\Sekmen.Commerce.MessageBus.csproj", "{F3326CBC-5613-4C83-BF5E-2395A33523F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.App", "Backend-Email\Sekmen.Commerce.Services.Email.App\Sekmen.Commerce.Services.Email.App.csproj", "{1BEC49CF-E908-427C-A2CF-5B504380D160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.Api", "Backend-Email\Sekmen.Commerce.Services.Email.Api\Sekmen.Commerce.Services.Email.Api.csproj", "{19C2AAB2-3521-4BD4-9428-B8C42D70DE42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Auth.Shared", "Backend-Auth\Sekmen.Commerce.Services.Auth.Shared\Sekmen.Commerce.Services.Auth.Shared.csproj", "{3314F91D-DDC6-401D-AB85-922BA456A6C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,14 +138,14 @@ Global
 		{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3326CBC-5613-4C83-BF5E-2395A33523F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3326CBC-5613-4C83-BF5E-2395A33523F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3326CBC-5613-4C83-BF5E-2395A33523F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3326CBC-5613-4C83-BF5E-2395A33523F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19C2AAB2-3521-4BD4-9428-B8C42D70DE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19C2AAB2-3521-4BD4-9428-B8C42D70DE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19C2AAB2-3521-4BD4-9428-B8C42D70DE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19C2AAB2-3521-4BD4-9428-B8C42D70DE42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEC49CF-E908-427C-A2CF-5B504380D160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEC49CF-E908-427C-A2CF-5B504380D160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEC49CF-E908-427C-A2CF-5B504380D160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEC49CF-E908-427C-A2CF-5B504380D160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3314F91D-DDC6-401D-AB85-922BA456A6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3314F91D-DDC6-401D-AB85-922BA456A6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3314F91D-DDC6-401D-AB85-922BA456A6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3314F91D-DDC6-401D-AB85-922BA456A6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BA9C5077-3B26-456B-8BD7-34DD2FFFD861} = {59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}
@@ -168,7 +166,7 @@ Global
 		{255EDD99-58A5-4341-BD6C-75C18028AC7F} = {62298EE3-E8C3-4CC9-AB20-84736C7406DA}
 		{C31E3650-68D4-4A3B-B66D-93E533435168} = {62298EE3-E8C3-4CC9-AB20-84736C7406DA}
 		{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64} = {62298EE3-E8C3-4CC9-AB20-84736C7406DA}
-		{F3326CBC-5613-4C83-BF5E-2395A33523F8} = {0E653161-D943-4AB7-8374-FDEEFC2C0A14}
-		{19C2AAB2-3521-4BD4-9428-B8C42D70DE42} = {91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}
+		{1BEC49CF-E908-427C-A2CF-5B504380D160} = {91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}
+		{3314F91D-DDC6-401D-AB85-922BA456A6C5} = {7520100F-BBE6-4FF3-86DC-E8BD58C65C3C}
 	EndGlobalSection
 EndGlobal

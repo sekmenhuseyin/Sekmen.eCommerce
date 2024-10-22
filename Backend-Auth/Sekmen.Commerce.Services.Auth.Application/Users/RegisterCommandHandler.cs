@@ -9,16 +9,7 @@ internal sealed class RegisterCommandHandler(
 {
     public async Task<Result<bool>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var user = new ApplicationUser
-        {
-            UserName = request.Email,
-            NormalizedUserName = request.Email.ToUpper(),
-            Email = request.Email,
-            NormalizedEmail = request.Email.ToUpper(),
-            Name = request.Name,
-            PhoneNumber = request.PhoneNumber
-        };
-
+        var user = new ApplicationUser(request.Name, request.Email, request.PhoneNumber);
         var result = await userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
             return Result.Fail<bool>(result.Errors.First().Description);
