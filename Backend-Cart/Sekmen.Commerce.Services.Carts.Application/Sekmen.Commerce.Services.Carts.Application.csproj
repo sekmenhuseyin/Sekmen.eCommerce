@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Sekmen.Commerce.MessageBus\Sekmen.Commerce.MessageBus\Sekmen.Commerce.MessageBus.csproj" />
       <ProjectReference Include="..\Sekmen.Commerce.Services.Carts.Infrastructure\Sekmen.Commerce.Services.Carts.Infrastructure.csproj" />
     </ItemGroup>
 
