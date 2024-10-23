@@ -1,20 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddInternalAuthentication();
 builder.Services
     .AddEndpointsApiExplorer()
-    .AddSwaggerGen()
     .AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapReverseProxy();
-app.UseHttpsRedirection();
 
 app.Run();
