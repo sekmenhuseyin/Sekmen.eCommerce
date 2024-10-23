@@ -1,12 +1,16 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-builder.Services.AddOcelot();
-builder.AddInternalAuthentication();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.MapGet("/", () => "Hello World!");
 
-app.UseRouting();
-app.MapControllers();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-await app.UseOcelot();
+app.UseHttpsRedirection();
+
+app.Run();
