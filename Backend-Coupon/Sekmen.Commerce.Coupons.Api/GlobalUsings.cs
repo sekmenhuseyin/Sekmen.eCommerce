@@ -1,0 +1,13 @@
+global using System.Text;
+global using MediatR;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.OpenApi.Models;
+global using Sekmen.Commerce.Coupons.Api.Extensions;
+global using Sekmen.Commerce.Coupons.Application.Coupons;
+global using Sekmen.Commerce.Coupons.Application.Models;
+global using Sekmen.Commerce.Coupons.Application.Segregation;
+global using Sekmen.Commerce.Coupons.Infrastructure;

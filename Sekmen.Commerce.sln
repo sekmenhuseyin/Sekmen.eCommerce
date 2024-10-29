@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Gateway", "_Gateway", "{47
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coupon", "Coupon", "{59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Coupons.Api", "Backend-Coupon\Sekmen.Commerce.Services.Coupons.Api\Sekmen.Commerce.Services.Coupons.Api.csproj", "{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Coupons.Api", "Backend-Coupon\Sekmen.Commerce.Coupons.Api\Sekmen.Commerce.Coupons.Api.csproj", "{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Items", ".Items", "{AB016603-589D-473B-A896-11FC386749B0}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,11 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Items", ".Items", "{AB0166
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Coupons.Infrastructure", "Backend-Coupon\Sekmen.Commerce.Services.Coupons.Infrastructure\Sekmen.Commerce.Services.Coupons.Infrastructure.csproj", "{8A71435A-4100-4801-AD44-0ED0C4822ECF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Coupons.Infrastructure", "Backend-Coupon\Sekmen.Commerce.Coupons.Infrastructure\Sekmen.Commerce.Coupons.Infrastructure.csproj", "{8A71435A-4100-4801-AD44-0ED0C4822ECF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Coupons.Domain", "Backend-Coupon\Sekmen.Commerce.Services.Coupons.Domain\Sekmen.Commerce.Services.Coupons.Domain.csproj", "{8E21FD74-4015-47B7-A3BE-29D3F7B89702}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Coupons.Domain", "Backend-Coupon\Sekmen.Commerce.Coupons.Domain\Sekmen.Commerce.Coupons.Domain.csproj", "{8E21FD74-4015-47B7-A3BE-29D3F7B89702}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Coupons.Application", "Backend-Coupon\Sekmen.Commerce.Services.Coupons.Application\Sekmen.Commerce.Services.Coupons.Application.csproj", "{17A6165A-9E33-47BF-AD66-0FC0700E23F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Coupons.Application", "Backend-Coupon\Sekmen.Commerce.Coupons.Application\Sekmen.Commerce.Coupons.Application.csproj", "{17A6165A-9E33-47BF-AD66-0FC0700E23F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Frontend.Web", "Frontend\Sekmen.Commerce.Frontend.Web\Sekmen.Commerce.Frontend.Web.csproj", "{24D2E0D4-CA11-4E41-BD1F-277CC4785BB6}"
 EndProject
