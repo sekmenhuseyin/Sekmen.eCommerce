@@ -1,4 +1,4 @@
-namespace Sekmen.Commerce.Services.Email.Infrastructure;
+namespace Sekmen.Commerce.Email.Infrastructure;
 
 public class MainDbContext(
     DbContextOptions options

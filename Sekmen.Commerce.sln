@@ -56,11 +56,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Carts.Infra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.App", "Backend-Email\Sekmen.Commerce.Services.Email.App\Sekmen.Commerce.Services.Email.App.csproj", "{1BEC49CF-E908-427C-A2CF-5B504380D160}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Email.App", "Backend-Email\Sekmen.Commerce.Email.App\Sekmen.Commerce.Email.App.csproj", "{1BEC49CF-E908-427C-A2CF-5B504380D160}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Auth.Shared", "Backend-Auth\Sekmen.Commerce.Auth.Shared\Sekmen.Commerce.Auth.Shared.csproj", "{3314F91D-DDC6-401D-AB85-922BA456A6C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.Infrastructure", "Backend-Email\Sekmen.Commerce.Services.Email.Infrastructure\Sekmen.Commerce.Services.Email.Infrastructure.csproj", "{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Email.Infrastructure", "Backend-Email\Sekmen.Commerce.Email.Infrastructure\Sekmen.Commerce.Email.Infrastructure.csproj", "{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Gateway", "Gateway\Sekmen.Commerce.Gateway.csproj", "{65C446F2-E9B5-45A3-BDEC-5766D7A858F6}"
 EndProject
