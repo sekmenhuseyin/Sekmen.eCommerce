@@ -46,13 +46,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Pr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{62298EE3-E8C3-4CC9-AB20-84736C7406DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Carts.Api", "Backend-Cart\Sekmen.Commerce.Services.Carts.Api\Sekmen.Commerce.Services.Carts.Api.csproj", "{53966CB5-1780-4E36-B9ED-2AB13D904E53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Carts.Api", "Backend-Cart\Sekmen.Commerce.Carts.Api\Sekmen.Commerce.Carts.Api.csproj", "{53966CB5-1780-4E36-B9ED-2AB13D904E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Carts.Application", "Backend-Cart\Sekmen.Commerce.Services.Carts.Application\Sekmen.Commerce.Services.Carts.Application.csproj", "{255EDD99-58A5-4341-BD6C-75C18028AC7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Carts.Application", "Backend-Cart\Sekmen.Commerce.Carts.Application\Sekmen.Commerce.Carts.Application.csproj", "{255EDD99-58A5-4341-BD6C-75C18028AC7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Carts.Domain", "Backend-Cart\Sekmen.Commerce.Services.Carts.Domain\Sekmen.Commerce.Services.Carts.Domain.csproj", "{C31E3650-68D4-4A3B-B66D-93E533435168}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Carts.Domain", "Backend-Cart\Sekmen.Commerce.Carts.Domain\Sekmen.Commerce.Carts.Domain.csproj", "{C31E3650-68D4-4A3B-B66D-93E533435168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Carts.Infrastructure", "Backend-Cart\Sekmen.Commerce.Services.Carts.Infrastructure\Sekmen.Commerce.Services.Carts.Infrastructure.csproj", "{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Carts.Infrastructure", "Backend-Cart\Sekmen.Commerce.Carts.Infrastructure\Sekmen.Commerce.Carts.Infrastructure.csproj", "{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}"
 EndProject

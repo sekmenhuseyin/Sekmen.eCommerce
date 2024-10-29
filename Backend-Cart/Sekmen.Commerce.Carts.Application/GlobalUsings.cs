@@ -1,0 +1,12 @@
+global using System.Collections;
+global using System.Linq.Expressions;
+global using AutoMapper;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using Sekmen.Commerce.Carts.Application.Models;
+global using Sekmen.Commerce.Carts.Application.Segregation;
+global using Sekmen.Commerce.Carts.Domain.Carts;
+global using Sekmen.Commerce.Carts.Infrastructure;
+global using Sekmen.Commerce.Carts.Application.Products;
+global using Sekmen.Commerce.Carts.Application.Coupons;
+global using Sekmen.Commerce.Carts.Application.Services;
