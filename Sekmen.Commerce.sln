@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{25AEB133-F15D-4AE6-A206-A521C9D867F8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{25AEB133-F15D-4AE6-A206-A521C9D867F8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{47E564B1-ABBB-43CA-962E-B8EC2F71775F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Gateway", "_Gateway", "{47E564B1-ABBB-43CA-962E-B8EC2F71775F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Coupon", "Backend-Coupon", "{59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coupon", "Coupon", "{59DD6135-F5EC-4D18-A373-0F70D4C6BDD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Coupons.Api", "Backend-Coupon\Sekmen.Commerce.Services.Coupons.Api\Sekmen.Commerce.Services.Coupons.Api.csproj", "{BA9C5077-3B26-456B-8BD7-34DD2FFFD861}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Items", "_Items", "{AB016603-589D-473B-A896-11FC386749B0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Items", ".Items", "{AB016603-589D-473B-A896-11FC386749B0}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
@@ -24,17 +24,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Frontend.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Frontend.Application", "Frontend\Sekmen.Commerce.Frontend.Application\Sekmen.Commerce.Frontend.Application.csproj", "{349614AD-ED2D-4DFE-8318-A528EC181CB4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Auth", "Backend-Auth", "{7520100F-BBE6-4FF3-86DC-E8BD58C65C3C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{7520100F-BBE6-4FF3-86DC-E8BD58C65C3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Auth.Api", "Backend-Auth\Sekmen.Commerce.Services.Auth.Api\Sekmen.Commerce.Services.Auth.Api.csproj", "{4ECACF60-5F96-486D-9785-76DBB3D5CD0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Auth.Api", "Backend-Auth\Sekmen.Commerce.Auth.Api\Sekmen.Commerce.Auth.Api.csproj", "{4ECACF60-5F96-486D-9785-76DBB3D5CD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Auth.Infrastructure", "Backend-Auth\Sekmen.Commerce.Services.Auth.Infrastructure\Sekmen.Commerce.Services.Auth.Infrastructure.csproj", "{F7EAE197-5E6C-433C-ACCC-4C860A854F53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Auth.Infrastructure", "Backend-Auth\Sekmen.Commerce.Auth.Infrastructure\Sekmen.Commerce.Auth.Infrastructure.csproj", "{F7EAE197-5E6C-433C-ACCC-4C860A854F53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Auth.Application", "Backend-Auth\Sekmen.Commerce.Services.Auth.Application\Sekmen.Commerce.Services.Auth.Application.csproj", "{62FF8624-50E4-40D7-B3F8-9783E92D8790}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Auth.Application", "Backend-Auth\Sekmen.Commerce.Auth.Application\Sekmen.Commerce.Auth.Application.csproj", "{62FF8624-50E4-40D7-B3F8-9783E92D8790}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Auth.Domain", "Backend-Auth\Sekmen.Commerce.Services.Auth.Domain\Sekmen.Commerce.Services.Auth.Domain.csproj", "{04C77508-4470-4CF7-A2F2-CA050867767B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Auth.Domain", "Backend-Auth\Sekmen.Commerce.Auth.Domain\Sekmen.Commerce.Auth.Domain.csproj", "{04C77508-4470-4CF7-A2F2-CA050867767B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Product", "Backend-Product", "{9DCBE494-8885-4F30-9A28-36BDF15F2986}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{9DCBE494-8885-4F30-9A28-36BDF15F2986}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Products.Api", "Backend-Product\Sekmen.Commerce.Services.Products.Api\Sekmen.Commerce.Services.Products.Api.csproj", "{AEF9F45E-00B6-4C9D-8AC7-7513BCC786C7}"
 EndProject
@@ -44,7 +44,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Products.Infrastructure", "Backend-Product\Sekmen.Commerce.Services.Products.Infrastructure\Sekmen.Commerce.Services.Products.Infrastructure.csproj", "{BDD844BC-23D5-4476-964E-6FEF41B573D3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Cart", "Backend-Cart", "{62298EE3-E8C3-4CC9-AB20-84736C7406DA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{62298EE3-E8C3-4CC9-AB20-84736C7406DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Carts.Api", "Backend-Cart\Sekmen.Commerce.Services.Carts.Api\Sekmen.Commerce.Services.Carts.Api.csproj", "{53966CB5-1780-4E36-B9ED-2AB13D904E53}"
 EndProject
@@ -54,11 +54,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Carts.Infrastructure", "Backend-Cart\Sekmen.Commerce.Services.Carts.Infrastructure\Sekmen.Commerce.Services.Carts.Infrastructure.csproj", "{A8C42ADE-9AA3-474C-90C9-89E99A3E6D64}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend-Email", "Backend-Email", "{91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{91BF54EE-44C6-4CD4-86E6-78771ACFEB9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.App", "Backend-Email\Sekmen.Commerce.Services.Email.App\Sekmen.Commerce.Services.Email.App.csproj", "{1BEC49CF-E908-427C-A2CF-5B504380D160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Auth.Shared", "Backend-Auth\Sekmen.Commerce.Services.Auth.Shared\Sekmen.Commerce.Services.Auth.Shared.csproj", "{3314F91D-DDC6-401D-AB85-922BA456A6C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Auth.Shared", "Backend-Auth\Sekmen.Commerce.Auth.Shared\Sekmen.Commerce.Auth.Shared.csproj", "{3314F91D-DDC6-401D-AB85-922BA456A6C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekmen.Commerce.Services.Email.Infrastructure", "Backend-Email\Sekmen.Commerce.Services.Email.Infrastructure\Sekmen.Commerce.Services.Email.Infrastructure.csproj", "{9F1808EF-A9BD-418E-AAD8-06F92DB720DE}"
 EndProject
