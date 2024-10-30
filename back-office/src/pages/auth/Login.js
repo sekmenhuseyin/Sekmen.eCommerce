@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Col, Form, Input, Button, Row, Card, message } from 'antd'
 import AuthService from './AuthService'
 import LoginContainer from './LoginContainer'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import useLocalStorage from '../../utils/useLocalStorage'
 
 const uathService = new AuthService()
 

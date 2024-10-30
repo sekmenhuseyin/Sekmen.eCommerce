@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import BaseLayout from "./components/BaseLayout";
+import BaseLayout from "./layouts/BaseLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import Page403 from "./pages/403";

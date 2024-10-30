@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Drawer, Layout, Menu } from 'antd'
 import { DownOutlined, UserOutlined, LogoutOutlined, UnlockOutlined } from '@ant-design/icons'
 import PasswordEdit from '../pages/users/PasswordEdit'
-import useLocalStorage from '../hooks/useLocalStorage'
+import useLocalStorage from '../utils/useLocalStorage'
 import { getEnvironmentName } from '../configs/origins'
 
 const { Header: AntHeader } = Layout

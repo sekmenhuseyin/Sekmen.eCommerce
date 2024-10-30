@@ -1,4 +1,3 @@
-
 export function createRandomPassword(passwordPolicy) {
     var password = generatePassword(passwordPolicy.requiredLength);
     while (!validatePassword(password, passwordPolicy)) {

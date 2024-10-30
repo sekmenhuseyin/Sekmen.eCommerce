@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Drawer, Input, message, Row, Table } from 'antd'
 import { PlusOutlined, UserOutlined } from '@ant-design/icons'
-import Page from '../../components/Page'
+import Page from '../../layouts/Page'
 import userColumns from './user-columns'
 import UserService from './UserService'
 import UserEdit from './UserEdit'

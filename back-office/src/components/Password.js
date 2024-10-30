@@ -1,7 +1,7 @@
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Row } from "antd";
 import { useState } from "react";
-import { createRandomPassword, PasswordCharacterCount } from "../configs/functions";
+import { createRandomPassword, PasswordCharacterCount } from "../utils/functions";
 
 export function Password({ formRef, passwordPolicy, showRepeat = false }) {
   const [passwordCharacterCounts, setPasswordCharacterCounts] = useState(PasswordCharacterCount(""))
